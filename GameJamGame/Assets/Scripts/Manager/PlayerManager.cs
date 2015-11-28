@@ -59,6 +59,7 @@ public class PlayerManager : MonoBehaviour {
 		m_ExpToLevel = (int)(10 * (Mathf.Pow(4,m_Level)));
 		m_Exp = PlayerPrefs.GetInt("EXP",0);
 		m_FirstDeath = true;
+		GetComponent<SkillsManager>().ResetSkills();
 	}
 
 	// Update is called once per frame

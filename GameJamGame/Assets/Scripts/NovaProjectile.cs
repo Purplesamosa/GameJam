@@ -35,7 +35,6 @@ public class NovaProjectile : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		Debug.Log("VELOCITY: " + GetComponent<Rigidbody2D>().velocity);
 		DeactivationTimer += Time.deltaTime;
 		if(DeactivationTimer >= 3.0f)
 		{
