@@ -110,7 +110,7 @@ MonoBehaviour:
   Damage: 18
   XPToGive: 9
   MyLevelBuilder: {fileID: 0}
-  Health: 15
+  Health: 30
 --- !u!212 &21282850
 SpriteRenderer:
   m_ObjectHideFlags: 1

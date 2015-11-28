@@ -287,8 +287,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartingY: -339
-  EndingY: 135
-  Speed: 50
+  EndingY: -95
+  Speed: 100
   bStop: 1
 --- !u!114 &797463557
 MonoBehaviour:
@@ -310,7 +310,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 1
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
@@ -772,7 +772,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 70b2311156a8ac041906437d2dfe09ca, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 9b506d78d5dc5b94db871c2df2d69a8c, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1

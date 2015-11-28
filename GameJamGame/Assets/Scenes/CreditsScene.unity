@@ -322,8 +322,9 @@ MonoBehaviour:
     missile by NicoleMarieProductions, http://opengameart.org/users/retrogamer8bit\r\nAsteroid
     by Phaelax, http://opengameart.org/users/phaelax\nBackground image by Glondo,
     http://opengameart.org/users/glondo\r\n\rUI: http://opengameart.org/users/buch
-    and http://opengameart.org/users/cemkalyoncu\n\nMusic:\r\nIntro and World 1 theme
-    Composed by: Cleyton R. Xavier http://opengameart.org/users/doppelganger\r\nWorld
+    and http://opengameart.org/users/cemkalyoncu\n\nMusic:\r\nStory scene music by
+    https://soundcloud.com/alexandr-zhelanov\nCredits music by Bojidar Marinov, http://opengameart.org/users/bojidar-bg\nIntro
+    and World 1 theme Composed by: Cleyton R. Xavier http://opengameart.org/users/doppelganger\r\nWorld
     2 theme Composed by: Pugly, http://opengameart.org/users/pugly\r\n\u201CBattle
     of the Void\u201D. Music by Marcelo Fernandez (http://www.marcelofernandezmusic.com).
     \r\nWorld 4 theme Composed by: Patrick Maney, http://opengameart.org/users/bbandrage"
@@ -709,7 +710,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 70b2311156a8ac041906437d2dfe09ca, type: 3}
+  m_audioClip: {fileID: 8300000, guid: cb9f64c8b19bc43459be232372b30f9a, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
