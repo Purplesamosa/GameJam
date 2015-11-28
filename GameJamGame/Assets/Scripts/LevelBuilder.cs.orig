@@ -24,8 +24,6 @@ public class LevelBuilder : MonoBehaviour
 
 	public MusicManager m_MusicManager;
 
-	public GameObject m_LoadingPanel;
-
 	void OnEnable()
 	{
 
@@ -44,28 +42,25 @@ public class LevelBuilder : MonoBehaviour
 
 	public void GoToNextLevel()
 	{
-		StartCoroutine(LoadNextLevel());
-	}
-
-	private IEnumerator LoadNextLevel()
-	{
-		m_LoadingPanel.SetActive(true);
-		yield return null;
 		LevelToLoad++;
 		if(LevelToLoad > 5)
 		{
 			WorldToLoad++;
+<<<<<<< HEAD
 			m_MusicManager.ChangeSong();
 			LevelToLoad = 0;
+=======
+			LevelToLoad = 1;
+>>>>>>> 790ba0c1b6c4e71957c00b675b77d7ede102c887
 			if(WorldToLoad > 5)
 			{
 				//WE BEAT THE GAME!!!
 				Application.LoadLevel("EndScreen");
-				yield return null;
+				return;
 			}
 		}
 		m_Player.ReloadStats();
-		
+
 		CreateLevel(WorldToLoad, LevelToLoad);
 	}
 
@@ -89,7 +84,6 @@ public class LevelBuilder : MonoBehaviour
 		}
 
 		LevelCompletedScreen.SetActive(true);
-		LevelCompletedScreen.transform.GetChild(0).gameObject.SetActive(false);
 		m_Player.AwardXP();
 		Time.timeScale = 0.0f;
 	}
@@ -248,7 +242,6 @@ public class LevelBuilder : MonoBehaviour
 					}
 				}
 			}
-		}
-		m_LoadingPanel.SetActive(false);
+		}       
 	}
 }

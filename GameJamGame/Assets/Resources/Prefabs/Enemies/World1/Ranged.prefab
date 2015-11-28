@@ -95,9 +95,10 @@ MonoBehaviour:
   StopDistance: 1.5
   Speed: 60
   AttackDelay: 2
-  Damage: 0
-  XPToGive: 0
+  Damage: 2
+  XPToGive: 2
   MyLevelBuilder: {fileID: 0}
+  Health: 2
 --- !u!114 &11436340
 MonoBehaviour:
   m_ObjectHideFlags: 1

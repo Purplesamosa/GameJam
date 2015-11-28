@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using System.Collections;
 
 public class PlayerManager : MonoBehaviour {
@@ -36,10 +35,6 @@ public class PlayerManager : MonoBehaviour {
 	private int m_Exp;
 	private int m_ExpToLevel;
 
-	public Text m_CurrentLevel;
-
-	public GameObject m_LevelUpText;
-
 	private bool m_IsInvincible;
 	// Use this for initialization
 	void Start () 
@@ -53,7 +48,6 @@ public class PlayerManager : MonoBehaviour {
 		m_Damage = 1 + (m_Level);
 		m_ExpToLevel = (int)(10 * (Mathf.Pow(4,m_Level)));
 		m_Exp = PlayerPrefs.GetInt("EXP",0);
-		m_CurrentLevel.text = "Level " + m_Level.ToString();
 	}
 
 	public void ReloadStats()
@@ -64,9 +58,11 @@ public class PlayerManager : MonoBehaviour {
 		m_Damage = 1 + (m_Level);
 		m_ExpToLevel = (int)(10 * (Mathf.Pow(4,m_Level)));
 		m_Exp = PlayerPrefs.GetInt("EXP",0);
+<<<<<<< HEAD
 		m_FirstDeath = true;
+=======
 		GetComponent<SkillsManager>().ResetSkills();
-		m_CurrentLevel.text = "Level " + m_Level.ToString();
+>>>>>>> 278f62e323c6b9ef3735150798d6a9e9ed58e881
 	}
 
 	// Update is called once per frame
@@ -288,7 +284,6 @@ public class PlayerManager : MonoBehaviour {
 		if(m_ExpToLevel < (m_Exp+_Text))
 		{
 			++m_Level;
-			m_LevelUpText.SetActive(true);
 			PlayerPrefs.SetInt("Level",m_Level);
 			_Text -= (m_ExpToLevel-m_Exp);
 			m_Exp = _Text;
