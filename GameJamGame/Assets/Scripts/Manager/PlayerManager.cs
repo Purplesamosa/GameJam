@@ -29,7 +29,7 @@ public class PlayerManager : MonoBehaviour {
 	 	float x = m_Animator.GetFloat("XVelocity");
 	 	float y = m_Animator.GetFloat("YVelocity");
 		int _IdleState = m_Animator.GetInteger("IdleState"); //idle state
-		if(Input.GetKey(KeyCode.A))
+		/*if(Input.GetKey(KeyCode.A))
 		{
 			m_XVelo = -1;
 		}
@@ -52,15 +52,21 @@ public class PlayerManager : MonoBehaviour {
 		else 
 		{
 			m_YVelo = 0;
-		}
+		}*/
+		Vector3 _hold = GameplayUIManager.Instance.GetJoyVelocities();
+		m_YVelo = _hold.y;
+		m_XVelo = _hold.x;
+		Debug.Log ("IDLE STATE : " + _IdleState);
 		if(Mathf.Abs(x) > Mathf.Abs(y) && !(x==0 && y==0))
 		{
 			if(x > 0)
 			{
+				Debug.Log("Idle 0");
 				_IdleState = 0;
 			}
 			else
 			{
+				Debug.Log("Idle 1");
 				_IdleState = 1;
 			}
 		}
@@ -68,10 +74,12 @@ public class PlayerManager : MonoBehaviour {
 		{
 			if(y > 0)
 			{
+				Debug.Log("Idle 2");
 				_IdleState = 2;
 			}
 			else
 			{
+				Debug.Log("Idle 3");
 				_IdleState = 3;
 			}
 		}
