@@ -42,7 +42,9 @@ public class PlayerManager : MonoBehaviour {
 		m_Animator = GetComponent<Animator>();
 		m_RigidBody = GetComponent<Rigidbody2D>();
 		m_SpriteRender = GetComponent<SpriteRenderer>();
-
+		m_Level = PlayerPrefs.GetInt("Level",1);
+		m_Health = m_MaxHealth = 10 * (3*m_Level);
+		m_Damage = 1 + (m_Level);
 	}
 	
 	// Update is called once per frame
@@ -182,6 +184,7 @@ public class PlayerManager : MonoBehaviour {
 		{
 			m_Animator.Play("PlayerDie");
 			m_IsDead = true;
+			m_IsInvincible = true;
 			if(m_FirstDeath)
 			{
 				StartCoroutine(LoadUpSaveLife());
