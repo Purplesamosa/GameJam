@@ -67,6 +67,7 @@ public class PlayerManager : MonoBehaviour {
 		m_FirstDeath = true;
 		GetComponent<SkillsManager>().ResetSkills();
 		m_CurrentLevel.text = "Level " + m_Level.ToString();
+		GameplayUIManager.Instance.m_HealthBar.value = m_Health/m_MaxHealth*100;
 	}
 
 	// Update is called once per frame

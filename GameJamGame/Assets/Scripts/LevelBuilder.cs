@@ -26,6 +26,11 @@ public class LevelBuilder : MonoBehaviour
 
 	public GameObject m_LoadingPanel;
 
+	private float Separation = 1.65f;
+
+	public Sprite [] WorldBG;
+	public SpriteRenderer MyBGImage;
+
 	void OnEnable()
 	{
 
@@ -40,6 +45,20 @@ public class LevelBuilder : MonoBehaviour
 		Vector2 TargetPos = TargetObj.position;
 		Vector2 CurPos = m_Player.transform.position;
 		MyMapPointer.UpdatePointer( (TargetPos - CurPos).normalized );
+
+#if UNITY_EDITOR
+		if(Input.GetKeyDown(KeyCode.P))
+		{
+			if(Time.timeScale == 0.0f)
+			{
+				Time.timeScale = 1.0f;
+			}
+			else
+			{
+				Time.timeScale = 0.0f;
+			}
+		}
+#endif
 	}
 
 	public void GoToNextLevel()
@@ -98,6 +117,8 @@ public class LevelBuilder : MonoBehaviour
 	{
 		GetComponent<EnemyBulletManager>().DeactivateAllBullets();
 
+		MyBGImage.sprite = WorldBG[_world - 1];
+
 		Time.timeScale = 1.0f;
 		World = WorldToLoad;
 		Level = LevelToLoad;
@@ -141,29 +162,29 @@ public class LevelBuilder : MonoBehaviour
 				case '0':
 					{
 						GameObject tile = Instantiate(Resources.Load("Prefabs/" + Season + "/Obstacles/Obstacle")) as GameObject;
-						tile.transform.position = new Vector3(CurColumn * 1.57f, -i * 1.57f);
+						tile.transform.position = new Vector3(CurColumn * Separation, -i * Separation);
 						tile.transform.parent = LevelContainer;
 					}
 					break;
 				case '1':
 					{
 						GameObject tile = Instantiate(Resources.Load("Prefabs/" + Season + "/Tiles/Tile" + (Random.Range(0,11)).ToString())) as GameObject;
-						tile.transform.position = new Vector3(CurColumn * 1.57f, -i * 1.57f);
+						tile.transform.position = new Vector3(CurColumn * Separation, -i * Separation);
 						tile.transform.parent = LevelContainer;
 					}
 					break;
 				case '2':
 					{
 						//Spawn player
-						GameObject.FindObjectOfType<PlayerManager>().transform.position = new Vector3(CurColumn * 1.57f, -i * 1.57f);
-						playerpos = new Vector2(CurColumn * 1.57f, -i * 1.57f);
+						GameObject.FindObjectOfType<PlayerManager>().transform.position = new Vector3(CurColumn * Separation, -i * Separation);
+						playerpos = new Vector2(CurColumn * Separation, -i * Separation);
 					goto case '1';
 					}
 				case '3':
 					{
 						//Spawn portal
 						GameObject teleporter = Instantiate(Resources.Load("Prefabs/Teleporter")) as GameObject;
-						teleporter.transform.position = new Vector3(CurColumn * 1.57f, -i * 1.57f);
+						teleporter.transform.position = new Vector3(CurColumn * Separation, -i * Separation);
 						teleporter.transform.parent = LevelContainer;
 						MyTeleporter = teleporter.GetComponent<Teleporter>();
 						MyTeleporter.MyLevelBuilder = this;
@@ -174,7 +195,7 @@ public class LevelBuilder : MonoBehaviour
 					{
 						//Spawn boss
 						GameObject boss = Instantiate(Resources.Load("Prefabs/Enemies/World" + _world + "/Boss")) as GameObject;
-						boss.transform.position = new Vector3(CurColumn * 1.57f, -i * 1.57f);
+						boss.transform.position = new Vector3(CurColumn * Separation, -i * Separation);
 						boss.transform.parent = LevelContainer;
 						boss.GetComponent<Enemy>().MyLevelBuilder = this;
 						TargetObj = boss.transform;
@@ -208,7 +229,7 @@ public class LevelBuilder : MonoBehaviour
 				int randomrow = Random.Range(0, lines.Length-2);
 				int randomcolumn = Random.Range(0, MaxColumn);
 
-				Vector2 tempvec = new Vector2(randomcolumn * 1.57f, -randomrow * 1.57f);
+				Vector2 tempvec = new Vector2(randomcolumn * Separation, -randomrow * Separation);
 
 				if(lines[randomrow][randomcolumn] == '1')
 				{
@@ -235,13 +256,13 @@ public class LevelBuilder : MonoBehaviour
 							if((randomrow & 1) == 0)
 							{
 								GameObject enemy = Instantiate(Resources.Load("Prefabs/Enemies/World" + _world + "/Ranged")) as GameObject;
-								enemy.transform.position = new Vector3(randomcolumn * 1.57f, -randomrow * 1.57f);
+								enemy.transform.position = new Vector3(randomcolumn * Separation, -randomrow * Separation);
 								enemy.transform.parent = LevelContainer;
 							}
 							else
 							{
 								GameObject enemy = Instantiate(Resources.Load("Prefabs/Enemies/World" + _world + "/Melee")) as GameObject;
-								enemy.transform.position = new Vector3(randomcolumn * 1.57f, -randomrow * 1.57f);
+								enemy.transform.position = new Vector3(randomcolumn * Separation, -randomrow * Separation);
 								enemy.transform.parent = LevelContainer;
 							}
 						}
@@ -250,5 +271,6 @@ public class LevelBuilder : MonoBehaviour
 			}
 		}
 		m_LoadingPanel.SetActive(false);
+
 	}
 }

@@ -420,6 +420,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11445600, guid: 42e2fb6e2198e444c9f28442b5ba88bc, type: 2}
+      propertyPath: WorldBG.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 473160, guid: 42e2fb6e2198e444c9f28442b5ba88bc, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -472,6 +476,30 @@ Prefab:
       propertyPath: m_LoadingPanel
       value: 
       objectReference: {fileID: 1807774717}
+    - target: {fileID: 11445600, guid: 42e2fb6e2198e444c9f28442b5ba88bc, type: 2}
+      propertyPath: MyBGImage
+      value: 
+      objectReference: {fileID: 2038738137}
+    - target: {fileID: 11445600, guid: 42e2fb6e2198e444c9f28442b5ba88bc, type: 2}
+      propertyPath: WorldBG.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: fb5d28d04d3534e49bc1960cd9cf0455,
+        type: 3}
+    - target: {fileID: 11445600, guid: 42e2fb6e2198e444c9f28442b5ba88bc, type: 2}
+      propertyPath: WorldBG.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: fb5d28d04d3534e49bc1960cd9cf0455,
+        type: 3}
+    - target: {fileID: 11445600, guid: 42e2fb6e2198e444c9f28442b5ba88bc, type: 2}
+      propertyPath: WorldBG.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300270, guid: fb5d28d04d3534e49bc1960cd9cf0455,
+        type: 3}
+    - target: {fileID: 11445600, guid: 42e2fb6e2198e444c9f28442b5ba88bc, type: 2}
+      propertyPath: WorldBG.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300016, guid: fb5d28d04d3534e49bc1960cd9cf0455,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 42e2fb6e2198e444c9f28442b5ba88bc, type: 2}
   m_IsPrefabParent: 0
@@ -571,6 +599,10 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!4 &52574480 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 473160, guid: 42e2fb6e2198e444c9f28442b5ba88bc, type: 2}
+  m_PrefabInternal: {fileID: 52574475}
 --- !u!1 &54446938
 GameObject:
   m_ObjectHideFlags: 0
@@ -1960,7 +1992,7 @@ GameObject:
   - 50: {fileID: 382737290}
   - 61: {fileID: 382737292}
   - 114: {fileID: 382737293}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mage
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -2051,7 +2083,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_FireBallManager: {fileID: 118577164}
-  m_CoolDownTimer: .25
+  m_CoolDownTimer: .75
   m_CircleCastRadius: 5
   m_Speed: 50
   m_CurrentLevel: {fileID: 1458989184}
@@ -6242,6 +6274,60 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2031902510}
+--- !u!1 &2038738135
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2038738136}
+  - 212: {fileID: 2038738137}
+  m_Layer: 0
+  m_Name: BackgroundImage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2038738136
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2038738135}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 500, y: 500, z: 1}
+  m_Children: []
+  m_Father: {fileID: 52574480}
+  m_RootOrder: 1
+--- !u!212 &2038738137
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2038738135}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 1
+  m_ReflectionProbeUsage: 1
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_ImportantGI: 0
+  m_AutoUVMaxDistance: .5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: fb5d28d04d3534e49bc1960cd9cf0455, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &2048827622
 GameObject:
   m_ObjectHideFlags: 0
@@ -6333,7 +6419,7 @@ RectTransform:
   m_Father: {fileID: 1096513860}
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 1.78813934e-07}
   m_SizeDelta: {x: 0, y: -10}
   m_Pivot: {x: .5, y: .5}
