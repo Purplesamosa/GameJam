@@ -65,7 +65,7 @@ public class Enemy : MonoBehaviour
 			GetComponent<EnemyFadeOut>().enabled = true;
 			m_Animator.enabled = false;
 			enabled = false;
-			//PlayerTransform.GetComponent<PlayerManager>().GiveXP(XPToGive);
+			PlayerTransform.GetComponent<PlayerManager>().GiveXP(XPToGive);
 		}
 	}
 	
