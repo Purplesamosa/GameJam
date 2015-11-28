@@ -25,7 +25,7 @@ public class PlayerManager : MonoBehaviour {
 
 	//health
 	private bool m_IsDead = false;
-	private bool m_FirstDeath = false;
+	private bool m_FirstDeath = true;
 	private int m_Level = 1;
 	private float m_MaxHealth = 10.0f;
 	private float m_Health = 10.0f;
@@ -58,6 +58,7 @@ public class PlayerManager : MonoBehaviour {
 		m_Damage = 1 + (m_Level);
 		m_ExpToLevel = (int)(10 * (Mathf.Pow(4,m_Level)));
 		m_Exp = PlayerPrefs.GetInt("EXP",0);
+		m_FirstDeath = true;
 	}
 
 	// Update is called once per frame
@@ -182,7 +183,10 @@ public class PlayerManager : MonoBehaviour {
 	{
 		m_SpriteRender.color = Color.red;
 		yield return new WaitForSeconds(0.2f);
-		m_IsInvincible = false;
+		if(m_Health > 0)
+		{
+			m_IsInvincible = false;
+		}
 		m_SpriteRender.color = Color.white;
 	}
 
@@ -195,14 +199,37 @@ public class PlayerManager : MonoBehaviour {
 			m_IsInvincible = true;
 			if(m_FirstDeath)
 			{
+				m_FirstDeath = false;
 				StartCoroutine(LoadUpSaveLife());
 			}
+			else
+			{
+				GameplayUIManager.Instance.FadeToMenu();
+			}
 		}
+	}
+
+	public void ChoosedToLive()
+	{
+		Time.timeScale = 1;
+		AdManager.Instance.ShowAd();
+		m_Animator.Play ("PlayerResurrected");
+		m_Health = m_MaxHealth;
+		GameplayUIManager.Instance.m_HealthBar.value = m_Health/m_MaxHealth*100;
+		m_IsDead = false;
+		m_IsInvincible = false;
+	}
+
+	public void ChoosedToDie()
+	{
+		Time.timeScale = 1;
+		GameplayUIManager.Instance.FadeToMenu();
 	}
 
 	private IEnumerator LoadUpSaveLife()
 	{
 		yield return new WaitForSeconds(1.5f);
+		Time.timeScale = 0;
 		GameplayUIManager.Instance.m_SaveLifePanel.SetActive(true);
 	}
 
@@ -213,6 +240,10 @@ public class PlayerManager : MonoBehaviour {
 
 	public void AwardXP(bool DoubleXP = false)
 	{
+		if(DoubleXP)
+		{
+			AdManager.Instance.ShowAd();
+		}
 		StartCoroutine(AddExp(DoubleXP));
 	}
 
