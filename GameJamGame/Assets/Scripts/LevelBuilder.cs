@@ -12,6 +12,8 @@ public class LevelBuilder : MonoBehaviour
 
 	public Transform LevelContainer;
 
+	public GameObject LevelCompletedScreen;
+
 	private Teleporter MyTeleporter;
 
 	void OnEnable()
@@ -41,6 +43,7 @@ public class LevelBuilder : MonoBehaviour
 	public void FinishLevel()
 	{
 		PlayerPrefs.SetInt("World" + World + "Level" + Level, 1);
+		LevelCompletedScreen.SetActive(true);
 	}
 
 	public void CreateLevel(int _world, int _level)
