@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class GameplayUIManager : MonoBehaviour {
@@ -15,8 +16,11 @@ public class GameplayUIManager : MonoBehaviour {
 
 	public VirtualJoyManager m_JoyManager;
 
+	public GameObject m_SaveLifePanel;
+
 	public UIButton m_FireButton;
 
+	public Slider m_HealthBar;
 	// Use this for initialization
 	void Awake ()
 	{
