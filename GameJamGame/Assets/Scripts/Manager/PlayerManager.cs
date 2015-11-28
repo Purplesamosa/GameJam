@@ -20,6 +20,12 @@ public class PlayerManager : MonoBehaviour {
 	//reference to rigidbody
 	private Rigidbody2D m_RigidBody;
 
+	//health
+	private bool m_IsDead = false;
+	private int m_Level = 1;
+	private float m_MaxHealth = 10.0f;
+	private float m_Health = 10.0f;
+	private float m_Damage = 1.0f;
 	// Use this for initialization
 	void Start () 
 	{	
@@ -35,30 +41,6 @@ public class PlayerManager : MonoBehaviour {
 	 	float x = m_Animator.GetFloat("XVelocity");
 	 	float y = m_Animator.GetFloat("YVelocity");
 		int _IdleState = m_Animator.GetInteger("IdleState"); //idle state
-		/*if(Input.GetKey(KeyCode.A))
-		{
-			m_XVelo = -1;
-		}
-		else if(Input.GetKey(KeyCode.D))
-		{
-			m_XVelo = 1;
-		}
-		else
-		{
-			m_XVelo = 0;
-		}
-		if(Input.GetKey(KeyCode.W))
-		{
-			m_YVelo = 1;
-		}
-		else if(Input.GetKey(KeyCode.S))
-		{
-			m_YVelo = -1;
-		}
-		else 
-		{
-			m_YVelo = 0;
-		}*/
 		Vector3 _hold = GameplayUIManager.Instance.GetJoyVelocities();
 		m_YVelo = _hold.y;
 		m_XVelo = _hold.x;
@@ -90,6 +72,7 @@ public class PlayerManager : MonoBehaviour {
 		m_Animator.SetFloat("XVelocity",m_XVelo);
 		m_Animator.SetInteger("IdleState",_IdleState);
 		#endregion
+		#region Attack
 		if(GameplayUIManager.Instance.GetFireButton() && m_CooledDownSpell)
 		{
 			m_CooledDownSpell = false;
@@ -143,12 +126,26 @@ public class PlayerManager : MonoBehaviour {
 			}
 			StartCoroutine(CoolDownAttack());
 		}
+		#endregion
 	}
 
 	private IEnumerator CoolDownAttack()
 	{
 		yield return new WaitForSeconds(m_CoolDownTimer);
 		m_CooledDownSpell = true;
+	}
+
+	public void TakeDamage(float Damage)
+	{
+		m_Health -= Damage;
+	}
+
+	private void HealthCheck()
+	{
+		if(m_Health <= 0)
+		{
+			m_IsDead = true;
+		}
 	}
 	/*
 	void FixedUpdate()

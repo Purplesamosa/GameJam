@@ -1,7 +1,6 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
 guid: 642ec02c8d12fef419b210203616d1cf
-timeCreated: 1448702056
+timeCreated: 1448704490
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName:
@@ -62,13 +61,6 @@ TextureImporter:
     21300108: teleporter_01_54
     21300110: teleporter_01_55
     21300112: teleporter_01_56
-=======
-guid: 49bc9a5c920e6a143836c173de2ca092
-timeCreated: 1448692751
-licenseType: Free
-TextureImporter:
-  fileIDToRecycleName: {}
->>>>>>> 1d7c43f876cfcb2be583de57b6d13f8d7c10a0c3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -95,22 +87,14 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
-<<<<<<< HEAD
     aniso: 16
-=======
-    aniso: -1
->>>>>>> 1d7c43f876cfcb2be583de57b6d13f8d7c10a0c3
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
-<<<<<<< HEAD
   spriteMode: 2
-=======
-  spriteMode: 1
->>>>>>> 1d7c43f876cfcb2be583de57b6d13f8d7c10a0c3
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -121,7 +105,6 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-<<<<<<< HEAD
     sprites:
     - name: teleporter_01_0
       rect:
@@ -693,9 +676,6 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-=======
-    sprites: []
->>>>>>> 1d7c43f876cfcb2be583de57b6d13f8d7c10a0c3
   spritePackingTag: 
   userData: 
   assetBundleName: 
