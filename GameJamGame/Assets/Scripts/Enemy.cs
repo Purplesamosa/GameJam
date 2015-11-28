@@ -32,7 +32,7 @@ public class Enemy : MonoBehaviour
 	private static EnemyBulletManager BulletManager;
 	private float AttackTimer = 0.0f;
 
-	void OnCollisionEnter2D(Collision col)
+	void OnCollisionEnter2D(Collision2D col)
 	{
 		if(col.transform == PlayerTransform)
 		{

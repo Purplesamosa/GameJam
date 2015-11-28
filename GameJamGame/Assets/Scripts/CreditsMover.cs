@@ -6,6 +6,7 @@ public class CreditsMover : MonoBehaviour
 	public float StartingY;
 	public float EndingY;
 	public float Speed;
+	public bool bStop = false;
 
 	// Update is called once per frame
 	void Update ()
@@ -14,6 +15,13 @@ public class CreditsMover : MonoBehaviour
 
 		if(GetComponent<RectTransform>().localPosition.y >= EndingY)
 		{
+
+			if(bStop)
+			{
+				Speed = 0.0f;
+				return;
+			}
+
 			GetComponent<RectTransform>().localPosition = new Vector3(GetComponent<RectTransform>().localPosition.x, 
 			                                                          StartingY, 
 			                                                          GetComponent<RectTransform>().localPosition.z);

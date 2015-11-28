@@ -20,6 +20,24 @@ public class LevelBuilder : MonoBehaviour
 		CreateLevel(WorldToLoad, LevelToLoad);
 	}
 
+	public void GoToNextLevel()
+	{
+		LevelToLoad++;
+		if(LevelToLoad > 5)
+		{
+			WorldToLoad++;
+			LevelToLoad = 0;
+			if(WorldToLoad > 5)
+			{
+				//WE BEAT THE GAME!!!
+				Application.LoadLevel("EndScreen");
+				return;
+			}
+		}
+
+		CreateLevel(WorldToLoad, LevelToLoad);
+	}
+
 	public void FinishLevel()
 	{
 		PlayerPrefs.SetInt("World" + World + "Level" + Level, 1);
