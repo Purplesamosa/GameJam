@@ -13,18 +13,30 @@ public class EnemyBulletManager : MonoBehaviour
 	void Start()
 	{
 		BulletPool = new GameObject[PoolSize];
-		for(int i = 0; i < PoolSize; i++)
+		for(int i = 0; i < BulletPool.Length; i++)
 		{
 			BulletPool[i] = Instantiate(BulletPrefab);
 			BulletPrefab.SetActive(false);
 		}
 	}
 
-	public void FireBullet(Vector2 Origin, Vector2 Direction, bool IsBoss)
+	public void DeactivateAllBullets()
+	{
+		if(BulletPool == null)
+			return;
+
+		for(int i = 0; i < BulletPool.Length; i++)
+		{
+			if(BulletPool[i])
+				BulletPool[i].SetActive(false);
+		}
+	}
+
+	public void FireBullet(Vector2 Origin, Vector2 Direction, float Damage, bool IsBoss)
 	{
 		GameObject myBullet = null;
 
-		for(int i = 0; i < PoolSize; i++)
+		for(int i = 0; i < BulletPool.Length; i++)
 		{
 			if(!BulletPool[i].activeSelf)
 			{
@@ -68,8 +80,7 @@ public class EnemyBulletManager : MonoBehaviour
 			}
 			break;
 		}
-		myBullet.GetComponent<EnemyBullet>().Speed = BulletSpeed;
-		myBullet.GetComponent<EnemyBullet>().Direction = Direction;
+		myBullet.GetComponent<EnemyBullet>().SetVars(BulletSpeed, Direction, Damage);
 		myBullet.SetActive(true);
 	}
 }

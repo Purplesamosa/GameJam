@@ -83,6 +83,8 @@ public class LevelBuilder : MonoBehaviour
 
 	public void CreateLevel(int _world, int _level)
 	{
+		GetComponent<EnemyBulletManager>().DeactivateAllBullets();
+
 		Time.timeScale = 1.0f;
 		World = WorldToLoad;
 		Level = LevelToLoad;
@@ -126,29 +128,29 @@ public class LevelBuilder : MonoBehaviour
 				case '0':
 					{
 						GameObject tile = Instantiate(Resources.Load("Prefabs/" + Season + "/Obstacles/Obstacle")) as GameObject;
-						tile.transform.position = new Vector3(CurColumn * 1.59f, -i * 1.59f);
+						tile.transform.position = new Vector3(CurColumn * 1.57f, -i * 1.57f);
 						tile.transform.parent = LevelContainer;
 					}
 					break;
 				case '1':
 					{
 						GameObject tile = Instantiate(Resources.Load("Prefabs/" + Season + "/Tiles/Tile" + (Random.Range(0,11)).ToString())) as GameObject;
-						tile.transform.position = new Vector3(CurColumn * 1.59f, -i * 1.59f);
+						tile.transform.position = new Vector3(CurColumn * 1.57f, -i * 1.57f);
 						tile.transform.parent = LevelContainer;
 					}
 					break;
 				case '2':
 					{
 						//Spawn player
-						GameObject.FindObjectOfType<PlayerManager>().transform.position = new Vector3(CurColumn * 1.59f, -i * 1.59f);
-						playerpos = new Vector2(CurColumn * 1.59f, -i * 1.59f);
+						GameObject.FindObjectOfType<PlayerManager>().transform.position = new Vector3(CurColumn * 1.57f, -i * 1.57f);
+						playerpos = new Vector2(CurColumn * 1.57f, -i * 1.57f);
 					goto case '1';
 					}
 				case '3':
 					{
 						//Spawn portal
 						GameObject teleporter = Instantiate(Resources.Load("Prefabs/Teleporter")) as GameObject;
-						teleporter.transform.position = new Vector3(CurColumn * 1.59f, -i * 1.59f);
+						teleporter.transform.position = new Vector3(CurColumn * 1.57f, -i * 1.57f);
 						teleporter.transform.parent = LevelContainer;
 						MyTeleporter = teleporter.GetComponent<Teleporter>();
 						MyTeleporter.MyLevelBuilder = this;
@@ -159,7 +161,7 @@ public class LevelBuilder : MonoBehaviour
 					{
 						//Spawn boss
 						GameObject boss = Instantiate(Resources.Load("Prefabs/Enemies/World" + _world + "/Boss")) as GameObject;
-						boss.transform.position = new Vector3(CurColumn * 1.59f, -i * 1.59f);
+						boss.transform.position = new Vector3(CurColumn * 1.57f, -i * 1.57f);
 						boss.transform.parent = LevelContainer;
 						boss.GetComponent<Enemy>().MyLevelBuilder = this;
 						TargetObj = boss.transform;
@@ -179,7 +181,7 @@ public class LevelBuilder : MonoBehaviour
 
 		//Spawn enemies randomly, a bit away from the player
 		int numenemies = (_world + 2) * 5 + _level;
-		numenemies *= 2;
+		numenemies *= 3;
 
 		List<Vector2> usedpositions = new List<Vector2>();
 
@@ -193,7 +195,7 @@ public class LevelBuilder : MonoBehaviour
 				int randomrow = Random.Range(0, lines.Length-2);
 				int randomcolumn = Random.Range(0, MaxColumn);
 
-				Vector2 tempvec = new Vector2(randomcolumn * 1.59f, -randomrow * 1.59f);
+				Vector2 tempvec = new Vector2(randomcolumn * 1.57f, -randomrow * 1.57f);
 
 				if(lines[randomrow][randomcolumn] == '1')
 				{
@@ -220,13 +222,13 @@ public class LevelBuilder : MonoBehaviour
 							if((randomrow & 1) == 0)
 							{
 								GameObject enemy = Instantiate(Resources.Load("Prefabs/Enemies/World" + _world + "/Ranged")) as GameObject;
-								enemy.transform.position = new Vector3(randomcolumn * 1.59f, -randomrow * 1.59f);
+								enemy.transform.position = new Vector3(randomcolumn * 1.57f, -randomrow * 1.57f);
 								enemy.transform.parent = LevelContainer;
 							}
 							else
 							{
 								GameObject enemy = Instantiate(Resources.Load("Prefabs/Enemies/World" + _world + "/Melee")) as GameObject;
-								enemy.transform.position = new Vector3(randomcolumn * 1.59f, -randomrow * 1.59f);
+								enemy.transform.position = new Vector3(randomcolumn * 1.57f, -randomrow * 1.57f);
 								enemy.transform.parent = LevelContainer;
 							}
 						}

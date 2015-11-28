@@ -62,6 +62,8 @@ public class Enemy : MonoBehaviour
 
 		if(Health <= 0.0f)
 		{
+			m_RigidBody.velocity = Vector2.zero;
+
 			GetComponent<EnemyFadeOut>().enabled = true;
 			m_Animator.enabled = false;
 			enabled = false;
@@ -115,7 +117,7 @@ public class Enemy : MonoBehaviour
 				if(AttackTimer >= AttackDelay)
 				{
 					AttackTimer = 0.0f;
-					BulletManager.FireBullet(transform.position, direction, false);
+					BulletManager.FireBullet(transform.position, direction, Damage, false);
 				}
 				break;
 			case EnemyType.Boss:
@@ -123,7 +125,7 @@ public class Enemy : MonoBehaviour
 				if(AttackTimer >= AttackDelay)
 				{
 					AttackTimer = 0.0f;
-					BulletManager.FireBullet(transform.position, direction, true);
+					BulletManager.FireBullet(transform.position, direction, Damage, true);
 
 					switch(BulletManager.GetComponent<LevelBuilder>().World)
 					{
@@ -132,12 +134,12 @@ public class Enemy : MonoBehaviour
 						Vector2 newvec = new Vector2(direction.x + 0.3f,
 						                             direction.y + 0.3f);
 						newvec.Normalize();
-						BulletManager.FireBullet(transform.position, newvec, true);
+						BulletManager.FireBullet(transform.position, newvec, Damage, true);
 
 						Vector2 newvec1 = new Vector2(direction.x - 0.3f,
 						                             direction.y - 0.3f);
 						newvec1.Normalize();
-						BulletManager.FireBullet(transform.position, newvec1, true);
+						BulletManager.FireBullet(transform.position, newvec1, Damage, true);
 					}
 						break;
 					case 2:
@@ -145,12 +147,12 @@ public class Enemy : MonoBehaviour
 						Vector2 newvec = new Vector2(direction.x + 0.4f,
 						                             direction.y + 0.4f);
 						newvec.Normalize();
-						BulletManager.FireBullet(transform.position, newvec, true);
+						BulletManager.FireBullet(transform.position, newvec, Damage, true);
 						
 						Vector2 newvec1 = new Vector2(direction.x - 0.4f,
 						                              direction.y - 0.4f);
 						newvec1.Normalize();
-						BulletManager.FireBullet(transform.position, newvec1, true);
+						BulletManager.FireBullet(transform.position, newvec1, Damage, true);
 						goto case 1;
 					}
 
@@ -159,12 +161,12 @@ public class Enemy : MonoBehaviour
 						Vector2 newvec = new Vector2(direction.x + 0.5f,
 						                             direction.y + 0.5f);
 						newvec.Normalize();
-						BulletManager.FireBullet(transform.position, newvec, true);
+						BulletManager.FireBullet(transform.position, newvec, Damage, true);
 						
 						Vector2 newvec1 = new Vector2(direction.x - 0.5f,
 						                              direction.y - 0.5f);
 						newvec1.Normalize();
-						BulletManager.FireBullet(transform.position, newvec1, true);
+						BulletManager.FireBullet(transform.position, newvec1, Damage, true);
 						goto case 2;
 					}
 						break;
@@ -173,22 +175,22 @@ public class Enemy : MonoBehaviour
 						Vector2 newvec = new Vector2(direction.x + 0.2f,
 						                             direction.y + 0.2f);
 						newvec.Normalize();
-						BulletManager.FireBullet(transform.position, newvec, true);
+						BulletManager.FireBullet(transform.position, newvec, Damage, true);
 						
 						Vector2 newvec1 = new Vector2(direction.x - 0.2f,
 						                              direction.y - 0.2f);
 						newvec1.Normalize();
-						BulletManager.FireBullet(transform.position, newvec1, true);
+						BulletManager.FireBullet(transform.position, newvec1, Damage, true);
 
 						Vector2 newvec2 = new Vector2(direction.x + 0.1f,
 						                             direction.y + 0.1f);
 						newvec2.Normalize();
-						BulletManager.FireBullet(transform.position, newvec2, true);
+						BulletManager.FireBullet(transform.position, newvec2, Damage, true);
 						
 						Vector2 newvec3 = new Vector2(direction.x - 0.1f,
 						                              direction.y - 0.1f);
 						newvec3.Normalize();
-						BulletManager.FireBullet(transform.position, newvec3, true);
+						BulletManager.FireBullet(transform.position, newvec3, Damage, true);
 
 						goto case 3;
 					}
