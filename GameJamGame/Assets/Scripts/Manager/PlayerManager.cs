@@ -58,6 +58,7 @@ public class PlayerManager : MonoBehaviour {
 		m_Damage = 1 + (m_Level);
 		m_ExpToLevel = (int)(10 * (Mathf.Pow(4,m_Level)));
 		m_Exp = PlayerPrefs.GetInt("EXP",0);
+		GetComponent<SkillsManager>().ResetSkills();
 	}
 
 	// Update is called once per frame
