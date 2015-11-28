@@ -13,7 +13,7 @@ public class GameplayUIManager : MonoBehaviour {
 	}
 	private static GameplayUIManager instance;
 
-
+	public VirtualJoyManager m_JoyManager;
 
 
 	// Use this for initialization
@@ -29,8 +29,8 @@ public class GameplayUIManager : MonoBehaviour {
 		}
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
+	public Vector3 GetJoyVelocities()
+	{
+		return Vector3.Normalize(m_JoyManager.m_JoyStick.position-m_JoyManager.transform.position);
 	}
 }
