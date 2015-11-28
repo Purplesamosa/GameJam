@@ -82,6 +82,8 @@ public class LevelBuilder : MonoBehaviour
 
 	public void CreateLevel(int _world, int _level)
 	{
+		GetComponent<EnemyBulletManager>().DeactivateAllBullets();
+
 		Time.timeScale = 1.0f;
 		World = WorldToLoad;
 		Level = LevelToLoad;
@@ -178,7 +180,7 @@ public class LevelBuilder : MonoBehaviour
 
 		//Spawn enemies randomly, a bit away from the player
 		int numenemies = (_world + 2) * 5 + _level;
-		numenemies *= 2;
+		numenemies *= 3;
 
 		List<Vector2> usedpositions = new List<Vector2>();
 
