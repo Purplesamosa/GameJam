@@ -73,6 +73,13 @@ public class PlayerManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
+		#region Pause
+		if(GameplayUIManager.Instance.GetPauseButton())
+		{
+			GameplayUIManager.Instance.SetUpThePause();
+			Time.timeScale = 0;
+		}
+		#endregion
 		if(!m_IsDead)
 		{
 			#region movement
@@ -307,6 +314,27 @@ public class PlayerManager : MonoBehaviour {
 		{
 			yield return null;
 		}
+	}
+
+
+	public int GetEXP()
+	{
+		return m_Exp;
+	}
+
+	public int GetLevelXP()
+	{
+		return m_ExpToLevel;
+	}
+
+	public string GetHP()
+	{
+		return m_Health.ToString() + "/" + m_MaxHealth.ToString();
+	}
+
+	public float GetDamage()
+	{
+		return m_Damage;
 	}
 
 	/*

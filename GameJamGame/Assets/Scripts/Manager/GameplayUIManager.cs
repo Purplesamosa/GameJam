@@ -22,11 +22,20 @@ public class GameplayUIManager : MonoBehaviour {
 	public Text m_FadeToMenuText;
 
 	public UIButton m_FireButton;
+	public UIButton m_PauseButton;
 
 	public Text m_ExpText;
 	public Slider m_ExpBar;
 
 	public Slider m_HealthBar;
+
+	public PlayerManager m_Player;
+
+	public GameObject m_PausePanel;
+	public Text m_CurrentText;
+	public Text m_ExpToLevelText;
+	public Text m_HealthText;
+	public Text m_DamageText;
 	// Use this for initialization
 	void Awake ()
 	{
@@ -67,5 +76,25 @@ public class GameplayUIManager : MonoBehaviour {
 		}
 		yield return new WaitForSeconds(1.0f);
 		Application.LoadLevel ("MenuScene");
+	}
+
+	public bool GetPauseButton()
+	{
+		return m_PauseButton.m_Status;
+	}
+
+	public void SetUpThePause()
+	{
+		m_PausePanel.SetActive(true);
+		m_CurrentText.text = "EXP: " + m_Player.GetEXP();
+		m_ExpToLevelText.text = "Till level: " + m_Player.GetLevelXP();
+		m_HealthText.text = m_Player.GetHP();
+		m_DamageText.text = m_Player.GetDamage().ToString();
+	}
+
+	public void Resume()
+	{
+		m_PausePanel.SetActive(false);
+		Time.timeScale = 1;
 	}
 }
