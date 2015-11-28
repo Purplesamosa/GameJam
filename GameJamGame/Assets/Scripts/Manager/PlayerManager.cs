@@ -46,6 +46,8 @@ public class PlayerManager : MonoBehaviour {
 		m_Level = PlayerPrefs.GetInt("Level",1);
 		m_Health = m_MaxHealth = 10 * (3*m_Level);
 		m_Damage = 1 + (m_Level);
+		m_ExpToLevel = (int)(10 * (Mathf.Pow(4,m_Level)));
+		m_Exp = PlayerPrefs.GetInt("EXP",0);
 	}
 
 	public void ReloadStats()
@@ -54,6 +56,8 @@ public class PlayerManager : MonoBehaviour {
 		m_Level = PlayerPrefs.GetInt("Level",1);
 		m_Health = m_MaxHealth = 10 * (3*m_Level);
 		m_Damage = 1 + (m_Level);
+		m_ExpToLevel = (int)(10 * (Mathf.Pow(4,m_Level)));
+		m_Exp = PlayerPrefs.GetInt("EXP",0);
 	}
 
 	// Update is called once per frame
@@ -211,6 +215,53 @@ public class PlayerManager : MonoBehaviour {
 	{
 		m_ExpForLevel += xp;
 	}
+
+	public void AwardXP()
+	{
+		StartCoroutine(AddExp());
+	}
+
+	private IEnumerator AddExp()
+	{
+		int _total = m_ExpForLevel;
+		int _Text = 0;
+		while(_total > 0)
+		{
+			if(_total > 10)
+			{
+				_total -= 10;
+				_Text += 10;
+			}
+			else
+			{
+				_Text += _total;
+				_total = 0;
+			}
+			GameplayUIManager.Instance.m_ExpText.text = "Exp Earnt: " + _Text.ToString();
+			GameplayUIManager.Instance.m_ExpBar.value = m_ExpToLevel/_Text+m_Exp;
+			yield return 0;
+		}
+		if(m_ExpToLevel < (m_Exp+_Text))
+		{
+			++m_Level;
+			PlayerPrefs.SetInt("Level",m_Level);
+			_Text -= (m_ExpToLevel-m_Exp);
+			m_Exp = _Text;
+			PlayerPrefs.SetInt("EXP",m_Exp);
+			ReloadStats();
+			GameplayUIManager.Instance.m_ExpBar.value = m_ExpToLevel/m_Exp;
+		}
+	}
+
+	public IEnumerator WaitForRealSeconds(float time)
+	{
+		float start = Time.realtimeSinceStartup;
+		while (Time.realtimeSinceStartup < start + time)
+		{
+			yield return null;
+		}
+	}
+
 	/*
 	void FixedUpdate()
 	{

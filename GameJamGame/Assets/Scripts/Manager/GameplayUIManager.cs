@@ -20,6 +20,9 @@ public class GameplayUIManager : MonoBehaviour {
 
 	public UIButton m_FireButton;
 
+	public Text m_ExpText;
+	public Slider m_ExpBar;
+
 	public Slider m_HealthBar;
 	// Use this for initialization
 	void Awake ()
