@@ -17,6 +17,9 @@ public class PlayerManager : MonoBehaviour {
 	//reference to animator
 	private Animator m_Animator;
 
+	//reference to renderer
+	private SpriteRenderer m_SpriteRender;
+
 	//reference to rigidbody
 	private Rigidbody2D m_RigidBody;
 
@@ -31,11 +34,14 @@ public class PlayerManager : MonoBehaviour {
 	private int m_ExpForLevel;
 	private int m_Exp;
 	private int m_ExpToLevel;
+
+	private bool m_IsInvincible;
 	// Use this for initialization
 	void Start () 
 	{	
 		m_Animator = GetComponent<Animator>();
 		m_RigidBody = GetComponent<Rigidbody2D>();
+		m_SpriteRender = GetComponent<SpriteRenderer>();
 
 	}
 	
@@ -137,6 +143,10 @@ public class PlayerManager : MonoBehaviour {
 				StartCoroutine(CoolDownAttack());
 			}
 			#endregion
+			if(Input.GetKeyDown(KeyCode.A))
+			{
+				TakeDamage(1.0f);
+			}
 		}
 	}
 
@@ -148,9 +158,22 @@ public class PlayerManager : MonoBehaviour {
 
 	public void TakeDamage(float Damage)
 	{
-		m_Health -= Damage;
-		GameplayUIManager.Instance.m_HealthBar.value = m_MaxHealth/m_Health;
-		HealthCheck();
+		if(!m_IsInvincible)
+		{
+			m_IsInvincible = true;
+			StartCoroutine(UnInvincible());
+			m_Health -= Damage;
+			GameplayUIManager.Instance.m_HealthBar.value = m_Health/m_MaxHealth*100;
+			HealthCheck();
+		}
+	}
+
+	private IEnumerator UnInvincible()
+	{
+		m_SpriteRender.color = Color.red;
+		yield return new WaitForSeconds(0.2f);
+		m_IsInvincible = false;
+		m_SpriteRender.color = Color.white;
 	}
 
 	private void HealthCheck()
