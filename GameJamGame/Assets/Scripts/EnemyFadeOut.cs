@@ -24,6 +24,10 @@ public class EnemyFadeOut : MonoBehaviour
 		if(alpha <= 0.0f)
 		{
 			gameObject.SetActive(false);
+			if(GetComponent<Enemy>().MyType == Enemy.EnemyType.Boss)
+			{
+				GetComponent<Enemy>().MyLevelBuilder.FinishLevel();
+			}
 		}
 	}
 }
