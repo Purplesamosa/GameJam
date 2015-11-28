@@ -115,10 +115,13 @@ public class PlayerManager : MonoBehaviour {
 					break;
 				}
 			}
-			if(_Hit2D[_closest])
+			if(_Hit2D.Length > 0)
 			{
-				Debug.Log("HERE?");
-				m_FireBallManager.ShootFireball(_IdleState,_Hit2D[_closest].GetComponent<Enemy>());
+				if(_Hit2D[_closest])
+				{
+					Debug.Log("HERE?");
+					m_FireBallManager.ShootFireball(_IdleState,_Hit2D[_closest].GetComponent<Enemy>());
+				}
 			}
 			else
 			{
