@@ -147,7 +147,6 @@ public class PlayerManager : MonoBehaviour {
 				{
 					if(_Hit2D[_closest])
 					{
-						Debug.Log("HERE?");
 						m_FireBallManager.ShootFireball(_IdleState,m_Damage,_Hit2D[_closest].GetComponent<Enemy>());
 					}
 				}
@@ -158,10 +157,6 @@ public class PlayerManager : MonoBehaviour {
 				StartCoroutine(CoolDownAttack());
 			}
 			#endregion
-			if(Input.GetKeyDown(KeyCode.A))
-			{
-				TakeDamage(1.0f);
-			}
 		}
 	}
 
@@ -216,15 +211,24 @@ public class PlayerManager : MonoBehaviour {
 		m_ExpForLevel += xp;
 	}
 
-	public void AwardXP()
+	public void AwardXP(bool DoubleXP = false)
 	{
-		StartCoroutine(AddExp());
+		StartCoroutine(AddExp(DoubleXP));
 	}
 
-	private IEnumerator AddExp()
+	private IEnumerator AddExp(bool DoubleXP)
 	{
 		int _total = m_ExpForLevel;
 		int _Text = 0;
+		if(DoubleXP)
+		{
+			_Text = _total;
+		}
+		else
+		{
+			_Text = 0;
+		}
+		GameplayUIManager.Instance.m_ExpBar.value = (float)m_Exp/(float)m_ExpToLevel;
 		while(_total > 0)
 		{
 			if(_total > 10)
@@ -238,7 +242,8 @@ public class PlayerManager : MonoBehaviour {
 				_total = 0;
 			}
 			GameplayUIManager.Instance.m_ExpText.text = "Exp Earnt: " + _Text.ToString();
-			GameplayUIManager.Instance.m_ExpBar.value = m_ExpToLevel/_Text+m_Exp;
+			Debug.Log(m_ExpToLevel/(_Text+m_Exp));
+			GameplayUIManager.Instance.m_ExpBar.value = (float)(_Text+m_Exp)/(float)m_ExpToLevel;
 			yield return 0;
 		}
 		if(m_ExpToLevel < (m_Exp+_Text))
@@ -249,7 +254,8 @@ public class PlayerManager : MonoBehaviour {
 			m_Exp = _Text;
 			PlayerPrefs.SetInt("EXP",m_Exp);
 			ReloadStats();
-			GameplayUIManager.Instance.m_ExpBar.value = m_ExpToLevel/m_Exp;
+			Debug.Log(m_Exp.ToString());
+			GameplayUIManager.Instance.m_ExpBar.value = (float)m_Exp/(float)m_ExpToLevel;
 		}
 	}
 
