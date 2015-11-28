@@ -84,9 +84,9 @@ public class Fireball : MonoBehaviour {
 
 	private IEnumerator AwakenBullet()
 	{
-		yield return new WaitForSeconds(0.5f);
+		yield return new WaitForSeconds(0.2f);
 		m_IgnoreTarget = false;
-		yield return new WaitForSeconds(5.0f);
+		yield return new WaitForSeconds(5.3f);
 		gameObject.SetActive(false);
 	}
 
