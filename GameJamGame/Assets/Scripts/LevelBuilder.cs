@@ -70,6 +70,8 @@ public class LevelBuilder : MonoBehaviour
 				case '3':
 					{
 						//Spawn portal
+					GameObject boss = Instantiate(Resources.Load("Prefabs/Teleporter")) as GameObject;
+					boss.transform.position = new Vector3(CurColumn * 1.59f, -i * 1.59f);
 					goto case '1';
 					}
 				case '4':

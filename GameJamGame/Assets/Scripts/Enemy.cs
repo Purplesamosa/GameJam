@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour
 	public int Column;
 	
 
-	private int Health;
+	private float Health;
 	private bool bSawPlayer;
 	private Animator m_Animator;
 	private Rigidbody2D m_RigidBody;
@@ -32,9 +32,14 @@ public class Enemy : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		Health =  2 * World * (int)MyType;
+		Health =  2.0f * World * (int)MyType;
 		m_Animator = GetComponent<Animator>();
 		m_RigidBody = GetComponent<Rigidbody2D>();
+	}
+
+	public void TakeDamage(float _dmg)
+	{
+		Health -= _dmg;
 	}
 	
 	// Update is called once per frame
