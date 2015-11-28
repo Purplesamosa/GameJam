@@ -22,6 +22,8 @@ public class LevelBuilder : MonoBehaviour
 
 	private Transform TargetObj;
 
+	public MusicManager m_MusicManager;
+
 	void OnEnable()
 	{
 
@@ -44,6 +46,7 @@ public class LevelBuilder : MonoBehaviour
 		if(LevelToLoad > 5)
 		{
 			WorldToLoad++;
+			m_MusicManager.ChangeSong();
 			LevelToLoad = 0;
 			if(WorldToLoad > 5)
 			{
