@@ -7,15 +7,28 @@ public class LevelBuilder : MonoBehaviour
 	public int World = 1;
 	public int Level = 1;
 
+	public static int WorldToLoad = 1;
+	public static int LevelToLoad = 1;
+
 	public Transform LevelContainer;
+
+	private Teleporter MyTeleporter;
 
 	void OnEnable()
 	{
-		CreateLevel(World,Level);
+
+		CreateLevel(WorldToLoad, LevelToLoad);
+	}
+
+	public void FinishLevel()
+	{
+		PlayerPrefs.SetInt("World" + World + "Level" + Level, 1);
 	}
 
 	public void CreateLevel(int _world, int _level)
 	{
+		World = WorldToLoad;
+		Level = LevelToLoad;
 		foreach(Transform tr in LevelContainer)
 		{
 			Destroy(tr.gameObject);
@@ -80,6 +93,8 @@ public class LevelBuilder : MonoBehaviour
 						GameObject teleporter = Instantiate(Resources.Load("Prefabs/Teleporter")) as GameObject;
 						teleporter.transform.position = new Vector3(CurColumn * 1.59f, -i * 1.59f);
 						teleporter.transform.parent = LevelContainer;
+						MyTeleporter = teleporter.GetComponent<Teleporter>();
+						MyTeleporter.MyLevelBuilder = this;
 					goto case '1';
 					}
 				case '4':
@@ -157,18 +172,6 @@ public class LevelBuilder : MonoBehaviour
 					}
 				}
 			}
-		}
-
-
-		/*FileInfo theSourceFile = new FileInfo ("Assets/Resources/LevelFiles/World1/1.txt");
-		StreamReader reader = theSourceFile.OpenText();
-				
-		string text = reader.ReadLine();
-				
-		while (text != null)
-		{
-			Debug.Log("Line " + text);
-			text = reader.ReadLine();
-		}*/       
+		}       
 	}
 }
