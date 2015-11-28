@@ -22,10 +22,15 @@ public class PlayerManager : MonoBehaviour {
 
 	//health
 	private bool m_IsDead = false;
+	private bool m_FirstDeath = false;
 	private int m_Level = 1;
 	private float m_MaxHealth = 10.0f;
 	private float m_Health = 10.0f;
 	private float m_Damage = 1.0f;
+
+	private int m_ExpForLevel;
+	private int m_Exp;
+	private int m_ExpToLevel;
 	// Use this for initialization
 	void Start () 
 	{	
@@ -144,6 +149,7 @@ public class PlayerManager : MonoBehaviour {
 	public void TakeDamage(float Damage)
 	{
 		m_Health -= Damage;
+		GameplayUIManager.Instance.m_HealthBar.value = m_MaxHealth/m_Health;
 		HealthCheck();
 	}
 
@@ -153,7 +159,22 @@ public class PlayerManager : MonoBehaviour {
 		{
 			m_Animator.Play("PlayerDie");
 			m_IsDead = true;
+			if(m_FirstDeath)
+			{
+				StartCoroutine(LoadUpSaveLife());
+			}
 		}
+	}
+
+	private IEnumerator LoadUpSaveLife()
+	{
+		yield return new WaitForSeconds(1.5f);
+		GameplayUIManager.Instance.m_SaveLifePanel.SetActive(true);
+	}
+
+	public void GiveXP(int xp)
+	{
+		m_ExpForLevel += xp;
 	}
 	/*
 	void FixedUpdate()
