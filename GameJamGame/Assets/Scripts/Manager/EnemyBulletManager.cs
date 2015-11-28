@@ -16,7 +16,7 @@ public class EnemyBulletManager : MonoBehaviour
 		for(int i = 0; i < BulletPool.Length; i++)
 		{
 			BulletPool[i] = Instantiate(BulletPrefab);
-			BulletPrefab.SetActive(false);
+			BulletPool[i].SetActive(false);
 		}
 	}
 
