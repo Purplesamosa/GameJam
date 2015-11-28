@@ -103,6 +103,7 @@ public class LevelBuilder : MonoBehaviour
 						GameObject boss = Instantiate(Resources.Load("Prefabs/Enemies/World" + _world + "/Boss")) as GameObject;
 						boss.transform.position = new Vector3(CurColumn * 1.59f, -i * 1.59f);
 						boss.transform.parent = LevelContainer;
+						boss.GetComponent<Enemy>().MyLevelBuilder = this;
 					goto case '1';
 					}
 				default:

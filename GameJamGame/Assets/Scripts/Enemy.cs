@@ -16,8 +16,12 @@ public class Enemy : MonoBehaviour
 	public float StopDistance = 0.25f;
 	public float Speed = 70.0f;
 	public float AttackDelay = 1.0f;
+	public float Damage;
 
 	public int XPToGive;
+
+	[HideInInspector]
+	public LevelBuilder MyLevelBuilder;
 	
 
 	private float Health;
@@ -27,6 +31,22 @@ public class Enemy : MonoBehaviour
 	private static Transform PlayerTransform;
 	private static EnemyBulletManager BulletManager;
 	private float AttackTimer = 0.0f;
+
+	void OnCollisionEnter2D(Collision col)
+	{
+		if(col.transform == PlayerTransform)
+		{
+			col.gameObject.GetComponent<PlayerManager>().TakeDamage(Damage);
+		}
+	}
+
+	void OnCollisionStay(Collision col)
+	{
+		if(col.transform == PlayerTransform)
+		{
+			col.gameObject.GetComponent<PlayerManager>().TakeDamage(Damage);
+		}
+	}
 	
 	// Use this for initialization
 	void Start ()
