@@ -26,8 +26,9 @@ public class PlayerManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-	 	float x = m_Animator.GetFloat("YVelocity");
-	 	float y = m_Animator.GetFloat("XVelocity");
+	 	float x = m_Animator.GetFloat("XVelocity");
+	 	float y = m_Animator.GetFloat("YVelocity");
+		int _IdleState = m_Animator.GetInteger("IdleState"); //idle state
 		if(Input.GetKey(KeyCode.A))
 		{
 			m_XVelo = -1;
@@ -52,11 +53,33 @@ public class PlayerManager : MonoBehaviour {
 		{
 			m_YVelo = 0;
 		}
-		Debug.Log(x.ToString() + " : X | " + y.ToString() + " : Y ");
+		if(Mathf.Abs(x) > Mathf.Abs(y) && !(x==0 && y==0))
+		{
+			if(x > 0)
+			{
+				_IdleState = 0;
+			}
+			else
+			{
+				_IdleState = 1;
+			}
+		}
+		else if(!(x==0 && y==0))
+		{
+			if(y > 0)
+			{
+				_IdleState = 2;
+			}
+			else
+			{
+				_IdleState = 3;
+			}
+		}
 		//3 = look down/ 2 = look up/ 1 = look left/ 0 = look right
 		m_RigidBody.velocity = new Vector2(Time.deltaTime*m_XVelo*m_Speed,Time.deltaTime*m_YVelo*m_Speed);
 		m_Animator.SetFloat("YVelocity",m_YVelo);
 		m_Animator.SetFloat("XVelocity",m_XVelo);
+		m_Animator.SetInteger("IdleState",_IdleState);
 	}
 	/*
 	void FixedUpdate()

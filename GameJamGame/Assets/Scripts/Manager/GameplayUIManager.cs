@@ -11,8 +11,10 @@ public class GameplayUIManager : MonoBehaviour {
 			return instance;
 		}
 	}
-
 	private static GameplayUIManager instance;
+
+
+
 
 	// Use this for initialization
 	void Awake ()
