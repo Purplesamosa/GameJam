@@ -40,6 +40,13 @@ public class Enemy : MonoBehaviour
 	public void TakeDamage(float _dmg)
 	{
 		Health -= _dmg;
+
+		if(Health <= 0.0f)
+		{
+			GetComponent<EnemyFadeOut>().enabled = true;
+			m_Animator.enabled = false;
+			enabled = false;
+		}
 	}
 	
 	// Update is called once per frame
