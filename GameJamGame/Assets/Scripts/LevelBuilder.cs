@@ -44,10 +44,12 @@ public class LevelBuilder : MonoBehaviour
 	{
 		PlayerPrefs.SetInt("World" + World + "Level" + Level, 1);
 		LevelCompletedScreen.SetActive(true);
+		Time.timeScale = 0.0f;
 	}
 
 	public void CreateLevel(int _world, int _level)
 	{
+		Time.timeScale = 1.0f;
 		World = WorldToLoad;
 		Level = LevelToLoad;
 		foreach(Transform tr in LevelContainer)

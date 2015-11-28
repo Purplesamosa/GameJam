@@ -23,7 +23,7 @@ public class LevelSelectionButton : MonoBehaviour
 	{
 		LevelBuilder.WorldToLoad = World;
 		LevelBuilder.LevelToLoad = Level;
-		Application.LoadLevel("TestScene");
+		Application.LoadLevel("MainScene");
 	}
 }
 
