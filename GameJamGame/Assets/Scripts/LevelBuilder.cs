@@ -14,6 +14,8 @@ public class LevelBuilder : MonoBehaviour
 
 	public GameObject LevelCompletedScreen;
 
+	public PlayerManager m_Player;
+
 	private Teleporter MyTeleporter;
 
 	void OnEnable()
@@ -36,6 +38,7 @@ public class LevelBuilder : MonoBehaviour
 				return;
 			}
 		}
+		m_Player.ReloadStats();
 
 		CreateLevel(WorldToLoad, LevelToLoad);
 	}
