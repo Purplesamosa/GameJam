@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 76fe5c94db56afb4885c57d76669670e
-timeCreated: 1448674290
+timeCreated: 1448676400
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -27,6 +27,7 @@ TextureImporter:
     21300040: FallTree
     21300042: SpringTree
     21300044: Decorations_12
+    21300046: Decorations_19
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -299,6 +300,16 @@ TextureImporter:
         y: 144
         width: 17
         height: 16
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Decorations_19
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 164
+        width: 8
+        height: 8
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
