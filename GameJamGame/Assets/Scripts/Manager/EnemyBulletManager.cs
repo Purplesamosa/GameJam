@@ -20,6 +20,13 @@ public class EnemyBulletManager : MonoBehaviour
 		}
 	}
 
+	void Update()
+	{
+		Vector2 TargetPos = GameObject.FindObjectOfType<Teleporter>().transform.position;
+		Vector2 CurPos = GameObject.FindObjectOfType<PlayerManager>().transform.position;
+		GameObject.FindObjectOfType<MapPointer>().UpdatePointer( (TargetPos - CurPos).normalized );
+	}
+
 	public void FireBullet(Vector2 Origin, Vector2 Direction, bool IsBoss)
 	{
 		GameObject myBullet = null;

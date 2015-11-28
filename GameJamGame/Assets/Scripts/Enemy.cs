@@ -97,7 +97,7 @@ public class Enemy : MonoBehaviour
 			bSawPlayer = true;
 			Vector2 direction = (PlayerTransform.position - transform.position).normalized;
 			//Walk towards the player
-			if(dist < StopDistance * StopDistance)
+			if(dist > StopDistance * StopDistance)
 			{
 				m_RigidBody.velocity = new Vector2(direction.x * Speed * Time.deltaTime, direction.y * Speed * Time.deltaTime);
 				m_Animator.SetFloat("XVelocity",m_RigidBody.velocity.x);
