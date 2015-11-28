@@ -39,6 +39,7 @@ public class PlayerManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{	
+		Debug.Log("PLAYER MANAGER CALLED START");
 		m_Animator = GetComponent<Animator>();
 		m_RigidBody = GetComponent<Rigidbody2D>();
 		m_SpriteRender = GetComponent<SpriteRenderer>();
@@ -46,7 +47,15 @@ public class PlayerManager : MonoBehaviour {
 		m_Health = m_MaxHealth = 10 * (3*m_Level);
 		m_Damage = 1 + (m_Level);
 	}
-	
+
+	public void ReloadStats()
+	{
+		Debug.Log("ENABLED");
+		m_Level = PlayerPrefs.GetInt("Level",1);
+		m_Health = m_MaxHealth = 10 * (3*m_Level);
+		m_Damage = 1 + (m_Level);
+	}
+
 	// Update is called once per frame
 	void Update () 
 	{
