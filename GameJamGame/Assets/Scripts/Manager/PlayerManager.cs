@@ -3,6 +3,11 @@ using System.Collections;
 
 public class PlayerManager : MonoBehaviour {
 
+	public FireBallManager m_FireBallManager;
+	private bool m_CooledDownSpell = true;
+	public float m_CoolDownTimer = 0.25f;
+	public float m_CircleCastRadius = 5.0f;
+
 	//changing velocites
 	public float m_Speed;
 
@@ -26,6 +31,7 @@ public class PlayerManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
+		#region movement
 	 	float x = m_Animator.GetFloat("XVelocity");
 	 	float y = m_Animator.GetFloat("YVelocity");
 		int _IdleState = m_Animator.GetInteger("IdleState"); //idle state
@@ -56,17 +62,14 @@ public class PlayerManager : MonoBehaviour {
 		Vector3 _hold = GameplayUIManager.Instance.GetJoyVelocities();
 		m_YVelo = _hold.y;
 		m_XVelo = _hold.x;
-		Debug.Log ("IDLE STATE : " + _IdleState);
 		if(Mathf.Abs(x) > Mathf.Abs(y) && !(x==0 && y==0))
 		{
 			if(x > 0)
 			{
-				Debug.Log("Idle 0");
 				_IdleState = 0;
 			}
 			else
 			{
-				Debug.Log("Idle 1");
 				_IdleState = 1;
 			}
 		}
@@ -74,12 +77,10 @@ public class PlayerManager : MonoBehaviour {
 		{
 			if(y > 0)
 			{
-				Debug.Log("Idle 2");
 				_IdleState = 2;
 			}
 			else
 			{
-				Debug.Log("Idle 3");
 				_IdleState = 3;
 			}
 		}
@@ -88,6 +89,66 @@ public class PlayerManager : MonoBehaviour {
 		m_Animator.SetFloat("YVelocity",m_YVelo);
 		m_Animator.SetFloat("XVelocity",m_XVelo);
 		m_Animator.SetInteger("IdleState",_IdleState);
+		#endregion
+		if(GameplayUIManager.Instance.GetFireButton() && m_CooledDownSpell)
+		{
+			m_CooledDownSpell = false;
+			int _closest = 0;
+			Collider2D[] _Hit2D = Physics2D.OverlapCircleAll(transform.position,m_CircleCastRadius,1<<9);
+			if(_Hit2D.Length > 0)
+			{
+				for(int i = 0; i < _Hit2D.Length; ++i)
+				{
+					if(i != 0)
+					{
+						if(Vector2.Distance(transform.position,_Hit2D[i].transform.position)
+						   < Vector2.Distance(transform.position,_Hit2D[_closest].transform.position))
+						{
+							_closest = i;
+						}
+					}
+				}
+			}
+			switch(_IdleState)
+			{
+				case 0:
+				{
+					m_Animator.Play("PlayerCastRight");
+					break;
+				}
+				case 1:
+				{
+					m_Animator.Play("PlayerCastLeft");
+					break;
+				}
+				case 2:
+				{
+					m_Animator.Play("PlayerCastUp");
+					break;
+				}
+				case 3:
+				{
+					m_Animator.Play("PlayerCastDown");
+					break;
+				}
+			}
+			if(_Hit2D[_closest])
+			{
+				Debug.Log("HERE?");
+				m_FireBallManager.ShootFireball(_IdleState,_Hit2D[_closest].GetComponent<Enemy>());
+			}
+			else
+			{
+				m_FireBallManager.ShootFireball(_IdleState);
+			}
+			StartCoroutine(CoolDownAttack());
+		}
+	}
+
+	private IEnumerator CoolDownAttack()
+	{
+		yield return new WaitForSeconds(m_CoolDownTimer);
+		m_CooledDownSpell = true;
 	}
 	/*
 	void FixedUpdate()

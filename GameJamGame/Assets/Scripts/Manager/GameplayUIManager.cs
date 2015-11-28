@@ -15,6 +15,7 @@ public class GameplayUIManager : MonoBehaviour {
 
 	public VirtualJoyManager m_JoyManager;
 
+	public UIButton m_FireButton;
 
 	// Use this for initialization
 	void Awake ()
@@ -33,4 +34,10 @@ public class GameplayUIManager : MonoBehaviour {
 	{
 		return Vector3.Normalize(m_JoyManager.m_JoyStick.position-m_JoyManager.transform.position);
 	}
+
+	public bool GetFireButton()
+	{
+		return m_FireButton.m_Status;
+	}
+
 }
