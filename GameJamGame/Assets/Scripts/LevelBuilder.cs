@@ -14,14 +14,28 @@ public class LevelBuilder : MonoBehaviour
 
 	public GameObject LevelCompletedScreen;
 
+	public MapPointer MyMapPointer;
+
 	public PlayerManager m_Player;
 
 	private Teleporter MyTeleporter;
+
+	private Transform TargetObj;
 
 	void OnEnable()
 	{
 
 		CreateLevel(WorldToLoad, LevelToLoad);
+	}
+
+	void Update()
+	{
+		if(!TargetObj || !m_Player)
+			return;
+
+		Vector2 TargetPos = TargetObj.position;
+		Vector2 CurPos = m_Player.transform.position;
+		MyMapPointer.UpdatePointer( (TargetPos - CurPos).normalized );
 	}
 
 	public void GoToNextLevel()
@@ -137,6 +151,7 @@ public class LevelBuilder : MonoBehaviour
 						teleporter.transform.parent = LevelContainer;
 						MyTeleporter = teleporter.GetComponent<Teleporter>();
 						MyTeleporter.MyLevelBuilder = this;
+						TargetObj = teleporter.transform;
 					goto case '1';
 					}
 				case '4':
@@ -146,6 +161,7 @@ public class LevelBuilder : MonoBehaviour
 						boss.transform.position = new Vector3(CurColumn * 1.59f, -i * 1.59f);
 						boss.transform.parent = LevelContainer;
 						boss.GetComponent<Enemy>().MyLevelBuilder = this;
+						TargetObj = boss.transform;
 					goto case '1';
 					}
 				default:
