@@ -11,6 +11,8 @@ public class Fireball : MonoBehaviour {
 
 	public Enemy m_Target;
 
+	private float m_Damage;
+
 	// Use this for initialization
 	void Awake () 
 	{
@@ -45,10 +47,11 @@ public class Fireball : MonoBehaviour {
 		}
 	}
 
-	public void Shoot(int initalDir, Enemy target = null)
+	public void Shoot(int initalDir,float damage, Enemy target = null)
 	{
 		gameObject.SetActive(true);
 		m_Target = target;
+		m_Damage = damage;
 		switch(initalDir)
 		{
 			case 3: 
@@ -92,6 +95,7 @@ public class Fireball : MonoBehaviour {
 		Debug.Log(other.name);
 		if(other.CompareTag("Enemies"))
 		{
+			other.GetComponent<Enemy>().TakeDamage(m_Damage);
 			gameObject.SetActive(false);
 		}
 	}
