@@ -89,7 +89,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 406130}
   - 61: {fileID: 6109866}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
