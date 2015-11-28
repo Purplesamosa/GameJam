@@ -35,23 +35,51 @@ public class LevelBuilder : MonoBehaviour
 			Season = "Winter";
 			break;
 		}
-
+		int CurColumn = 0;
 		for(int i = 0; i < lines.Length; i++)
 		{
+			CurColumn = 0;
 			for(int character = 0; character < lines[i].Length; character++)
 			{
-				if(lines[i][character] == '0')
+				switch(lines[i][character])
 				{
-					GameObject tile = Instantiate(Resources.Load("Prefabs/" + Season + "/Obstacles/Obstacle")) as GameObject;
-					tile.transform.position = new Vector3(character * 1.59f, -i * 1.59f);
-					tile.transform.parent = transform;
+				case '0':
+					{
+						GameObject tile = Instantiate(Resources.Load("Prefabs/" + Season + "/Obstacles/Obstacle")) as GameObject;
+						tile.transform.position = new Vector3(CurColumn * 1.59f, -i * 1.59f);
+						tile.transform.parent = transform;
+					}
+					break;
+				case '1':
+					{
+						GameObject tile = Instantiate(Resources.Load("Prefabs/" + Season + "/Tiles/Tile" + (Random.Range(0,11)).ToString())) as GameObject;
+						tile.transform.position = new Vector3(CurColumn * 1.59f, -i * 1.59f);
+						tile.transform.parent = transform;
+					}
+					break;
+				case '2':
+					{
+						//Spawn player
+					goto case '1';
+					}
+					break;
+				case '3':
+					{
+						//Spawn portal
+					goto case '1';
+					}
+					break;
+				case '4':
+					{
+						//Spawn boss
+					goto case '1';
+					}
+					break;
+				default:
+					CurColumn--;
+					break;
 				}
-				else
-				{
-					GameObject tile = Instantiate(Resources.Load("Prefabs/" + Season + "/Tiles/Tile" + (Random.Range(0,11)).ToString())) as GameObject;
-					tile.transform.position = new Vector3(character * 1.59f, -i * 1.59f);
-					tile.transform.parent = transform;
-				}
+				CurColumn++;
 			}
 		}
 
