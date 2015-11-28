@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour
 	public LevelBuilder MyLevelBuilder;
 	
 
-	private float Health;
+	public float Health;
 	private bool bSawPlayer = false;
 	private Animator m_Animator;
 	private Rigidbody2D m_RigidBody;
@@ -51,7 +51,7 @@ public class Enemy : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		Health =  2.0f * World * (int)MyType;
+		//Health =  2.0f * World * (int)MyType;
 		m_Animator = GetComponent<Animator>();
 		m_RigidBody = GetComponent<Rigidbody2D>();
 	}
@@ -65,6 +65,7 @@ public class Enemy : MonoBehaviour
 			m_RigidBody.velocity = Vector2.zero;
 
 			GetComponent<EnemyFadeOut>().enabled = true;
+			GetComponent<Collider2D>().enabled = false;
 			m_Animator.enabled = false;
 			enabled = false;
 			PlayerTransform.GetComponent<PlayerManager>().GiveXP(XPToGive);

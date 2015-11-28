@@ -44,7 +44,7 @@ public class LevelBuilder : MonoBehaviour
 		if(LevelToLoad > 5)
 		{
 			WorldToLoad++;
-			LevelToLoad = 0;
+			LevelToLoad = 1;
 			if(WorldToLoad > 5)
 			{
 				//WE BEAT THE GAME!!!
@@ -64,7 +64,7 @@ public class LevelBuilder : MonoBehaviour
 		if(Level > 5)
 		{
 			World++;
-			Level = 0;
+			Level = 1;
 			if(World > 5)
 			{
 				//We beat the game
