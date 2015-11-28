@@ -42,7 +42,23 @@ public class LevelBuilder : MonoBehaviour
 
 	public void FinishLevel()
 	{
-		PlayerPrefs.SetInt("World" + World + "Level" + Level, 1);
+		bool bUnlock = true;
+		Level++;
+		if(Level > 5)
+		{
+			World++;
+			Level = 0;
+			if(World > 5)
+			{
+				//We beat the game
+				bUnlock = false;
+			}
+		}
+		if(bUnlock)
+		{
+			PlayerPrefs.SetInt("World" + World + "Level" + Level, 1);
+		}
+
 		LevelCompletedScreen.SetActive(true);
 		Time.timeScale = 0.0f;
 	}
@@ -143,6 +159,7 @@ public class LevelBuilder : MonoBehaviour
 
 		//Spawn enemies randomly, a bit away from the player
 		int numenemies = (_world + 2) * 5 + _level;
+		numenemies *= 2;
 
 		List<Vector2> usedpositions = new List<Vector2>();
 

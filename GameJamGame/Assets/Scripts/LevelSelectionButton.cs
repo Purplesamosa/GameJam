@@ -9,6 +9,12 @@ public class LevelSelectionButton : MonoBehaviour
 
 	void OnEnable()
 	{
+		if(World == 1 && Level == 1)
+		{
+			GetComponent<Button>().interactable = true;
+			return;
+		}
+
 		if(PlayerPrefs.GetInt("World" + World + "Level" + Level, 0) > 0)
 		{
 			GetComponent<Button>().interactable = true;
