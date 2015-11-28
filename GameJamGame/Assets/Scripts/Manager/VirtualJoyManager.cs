@@ -5,13 +5,16 @@ using System.Collections;
 public class VirtualJoyManager : MonoBehaviour, IPointerDownHandler, IPointerUpHandler{
 
 	public Transform m_JoyStick;
-
+	
 	public float m_Distance;
 	private bool m_TrackMovement;
+	private int m_TouchIndex;
+
+	float _scalar;
 
 	void Start()
 	{
-		float _scalar = Screen.width/414.0f;
+		_scalar = Screen.width/414.0f;
 		m_Distance *= _scalar;
 	}
 
@@ -20,19 +23,36 @@ public class VirtualJoyManager : MonoBehaviour, IPointerDownHandler, IPointerUpH
 	{
 		if(m_TrackMovement)
 		{
+#if UNITY_EDITOR
 			if(Vector2.Distance(transform.position,Input.mousePosition) < m_Distance)
 			{
-				m_JoyStick.position = Input.mousePosition;
+				m_JoyStick.localPosition = (Input.mousePosition-transform.position)/_scalar;
 			}
 			else
 			{
-				m_JoyStick.localPosition = (Vector3.Normalize(Input.mousePosition - transform.position)*m_Distance);
+				m_JoyStick.localPosition = (Vector3.Normalize(Input.mousePosition - transform.position)*m_Distance)/_scalar;
 			}
+#else
+			if(Vector2.Distance(transform.position, Input.GetTouch(m_TouchIndex).position) < m_Distance)
+			{
+				Vector3 _MyVec = new Vector3(Input.GetTouch(m_TouchIndex).position.x,
+				                             Input.GetTouch(m_TouchIndex).position.y,0);
+				m_JoyStick.localPosition = (_MyVec-transform.position)/_scalar;
+			}
+			else
+			{
+				Vector3 _MyVec = new Vector3(Input.GetTouch(m_TouchIndex).position.x,
+				                             Input.GetTouch(m_TouchIndex).position.y,0);
+				m_JoyStick.localPosition = (Vector3.Normalize(_MyVec - transform.position)*m_Distance)/_scalar;
+			}
+
+#endif
 		}
 	}
 
 	public void OnPointerDown(PointerEventData eventData)
 	{
+		m_TouchIndex = eventData.pointerId;
 		m_TrackMovement = true;
 	}
 
