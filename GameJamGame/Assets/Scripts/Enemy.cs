@@ -17,8 +17,7 @@ public class Enemy : MonoBehaviour
 	public float Speed = 70.0f;
 	public float AttackDelay = 1.0f;
 
-	public int Row;
-	public int Column;
+	public int XPToGive;
 	
 
 	private float Health;
@@ -46,6 +45,7 @@ public class Enemy : MonoBehaviour
 			GetComponent<EnemyFadeOut>().enabled = true;
 			m_Animator.enabled = false;
 			enabled = false;
+			//PlayerTransform.GetComponent<PlayerManager>().GiveXP(XPToGive);
 		}
 	}
 	
