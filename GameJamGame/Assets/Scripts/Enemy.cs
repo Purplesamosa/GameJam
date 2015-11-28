@@ -60,13 +60,20 @@ public class Enemy : MonoBehaviour
 
 		float dist = Vector2.SqrMagnitude(PlayerTransform.position - transform.position);
 
-		if(dist <= ViewRange*ViewRange && dist >= StopDistance * StopDistance)
+		if(dist <= ViewRange*ViewRange)
 		{
-			//Walk towards the player
 			Vector2 direction = (PlayerTransform.position - transform.position).normalized;
-			m_RigidBody.velocity = new Vector2(direction.x * Speed * Time.deltaTime, direction.y * Speed * Time.deltaTime);
-			m_Animator.SetFloat("XVelocity",m_RigidBody.velocity.x);
-			m_Animator.SetFloat("YVelocity",m_RigidBody.velocity.y);
+			//Walk towards the player
+			if(dist < StopDistance * StopDistance)
+			{
+				m_RigidBody.velocity = new Vector2(direction.x * Speed * Time.deltaTime, direction.y * Speed * Time.deltaTime);
+				m_Animator.SetFloat("XVelocity",m_RigidBody.velocity.x);
+				m_Animator.SetFloat("YVelocity",m_RigidBody.velocity.y);
+			}
+			else
+			{
+				m_RigidBody.velocity = Vector2.zero;
+			}
 
 			switch(MyType)
 			{
