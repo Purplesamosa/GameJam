@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour
 	
 
 	private float Health;
-	private bool bSawPlayer;
+	private bool bSawPlayer = false;
 	private Animator m_Animator;
 	private Rigidbody2D m_RigidBody;
 	private static Transform PlayerTransform;
@@ -72,8 +72,9 @@ public class Enemy : MonoBehaviour
 
 		float dist = Vector2.SqrMagnitude(PlayerTransform.position - transform.position);
 
-		if(dist <= ViewRange*ViewRange)
+		if(dist <= ViewRange*ViewRange || bSawPlayer)
 		{
+			bSawPlayer = true;
 			Vector2 direction = (PlayerTransform.position - transform.position).normalized;
 			//Walk towards the player
 			if(dist < StopDistance * StopDistance)
