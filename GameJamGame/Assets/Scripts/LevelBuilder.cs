@@ -75,7 +75,7 @@ public class LevelBuilder : MonoBehaviour
 		{
 			WorldToLoad++;
 			m_MusicManager.ChangeSong();
-			LevelToLoad = 0;
+			LevelToLoad = 1;
 			if(WorldToLoad > 5)
 			{
 				//WE BEAT THE GAME!!!
