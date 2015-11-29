@@ -139,7 +139,29 @@ public class SkillsManager : MonoBehaviour
 			Button3Img.color = new Color(1.0f, 1.0f, 1.0f);
 		}
 
-		if(bHasSkill1 && Skill1.GetComponent<UIButton>().m_Status && SkillCooldown1 <= 0.0f)
+		
+		bool bKeySkill1 = false;
+		bool bKeySkill2 = false;
+		bool bKeySkill3 = false;
+		
+		#if UNITY_EDITOR
+		if(Input.GetKey(KeyCode.X))
+		{
+			bKeySkill1 = true;
+		}
+		
+		if(Input.GetKey(KeyCode.C))
+		{
+			bKeySkill2 = true;
+		}
+		
+		if(Input.GetKey(KeyCode.V))
+		{
+			bKeySkill3 = true;
+		}
+		#endif
+
+		if(bHasSkill1 && (Skill1.GetComponent<UIButton>().m_Status || bKeySkill1) && SkillCooldown1 <= 0.0f)
 		{
 			Skill1.interactable = false;
 			//Dark fire nova
@@ -156,7 +178,8 @@ public class SkillsManager : MonoBehaviour
 			}
 		}
 
-		if(bHasSkill2 && Skill2.GetComponent<UIButton>().m_Status && SkillCooldown2 <= 0.0f)
+
+		if(bHasSkill2 && (Skill2.GetComponent<UIButton>().m_Status || bKeySkill2) && SkillCooldown2 <= 0.0f)
 		{
 			SkillCooldown2 = 5.0f;
 			Skill2.interactable = false;
@@ -166,7 +189,7 @@ public class SkillsManager : MonoBehaviour
 			InvokeRepeating("FireBarrage", 0.01f, 0.1f);
 		}
 
-		if(bHasSkill3 && Skill3.GetComponent<UIButton>().m_Status && SkillCooldown3 <= 0.0f)
+		if(bHasSkill3 && (Skill3.GetComponent<UIButton>().m_Status || bKeySkill3)  && SkillCooldown3 <= 0.0f)
 		{
 			SkillCooldown3 = 5.0f;
 			Skill3.interactable = false;

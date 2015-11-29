@@ -56,7 +56,18 @@ public class GameplayUIManager : MonoBehaviour {
 
 	public bool GetFireButton()
 	{
-		return m_FireButton.m_Status;
+		bool bKeyFire = false;
+#if UNITY_EDITOR
+		if(Input.GetKey(KeyCode.Z))
+		{
+			bKeyFire = true;
+		}
+		else
+		{
+			bKeyFire = false;
+		}
+#endif
+		return (m_FireButton.m_Status || bKeyFire);
 	}
 
 	public void FadeToMenu()
