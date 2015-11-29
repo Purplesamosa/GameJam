@@ -28,7 +28,7 @@ public class NovaProjectile : MonoBehaviour
 		if(pm)
 		{
 			pm.TakeDamage(Damage);
-			gameObject.SetActive(false);
+			//gameObject.SetActive(false);
 		}
 	}
 	

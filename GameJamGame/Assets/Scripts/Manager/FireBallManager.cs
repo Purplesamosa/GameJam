@@ -5,6 +5,14 @@ public class FireBallManager : MonoBehaviour {
 
 	public Fireball[] m_Fireballs;
 
+	public void DeactivateFireballs()
+	{
+		for(int i = 0; i < m_Fireballs.Length; ++i)
+		{
+			m_Fireballs[i].gameObject.SetActive(false);
+		}
+	}
+
 	public void ShootFireball(int initalDir,float damage , Enemy target = null)
 	{
 		for(int i = 0; i < m_Fireballs.Length; ++i)

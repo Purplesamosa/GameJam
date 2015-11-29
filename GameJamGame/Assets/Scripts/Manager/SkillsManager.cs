@@ -79,6 +79,18 @@ public class SkillsManager : MonoBehaviour
 	public void ResetSkills()
 	{
 		SkillCooldown1 = SkillCooldown2 = SkillCooldown3 = 0.0f;
+
+		for(int i = 0; i < NovaProjectilesPool.Length; i++)
+		{
+			NovaProjectilesPool[i].gameObject.SetActive(false);
+		}
+
+		for(int i = 0; i < BarrageProjectilesPool.Length; i++)
+		{
+			BarrageProjectilesPool[i].gameObject.SetActive(false);
+		}
+		
+		MyMeteor.gameObject.SetActive(false);
 	}
 
 	public void CheckSkills()

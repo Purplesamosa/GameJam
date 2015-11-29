@@ -66,6 +66,7 @@ public class PlayerManager : MonoBehaviour {
 		m_Exp = PlayerPrefs.GetInt("EXP",0);
 		m_FirstDeath = true;
 		GetComponent<SkillsManager>().ResetSkills();
+		m_FireBallManager.DeactivateFireballs();
 		m_CurrentLevel.text = "Level " + m_Level.ToString();
 		GameplayUIManager.Instance.m_HealthBar.value = m_Health/m_MaxHealth*100;
 	}
