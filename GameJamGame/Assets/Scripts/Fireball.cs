@@ -36,13 +36,22 @@ public class Fireball : MonoBehaviour {
 		{
 			if(m_Target.gameObject.activeSelf)
 			{
-				Vector2 _Direction = m_Target.transform.position - transform.position ;
+				/*Vector2 _Direction = m_Target.transform.position - transform.position ;
 				_Direction.Normalize();
 				Debug.Log(_Direction);
 				float _Angle = Mathf.Atan2(_Direction.y,_Direction.x)*Mathf.Rad2Deg;
 				_Angle += 90;
 				transform.rotation = Quaternion.AngleAxis(_Angle,Vector3.forward);
-				m_RigidBody.velocity = _Direction*m_Speed*Time.deltaTime;
+				m_RigidBody.velocity = _Direction*m_Speed*Time.deltaTime;*/
+
+				Vector3 dir = m_Target.transform.position - transform.position;
+				float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+				//angle += 90.0f;
+				Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
+				transform.rotation = Quaternion.RotateTowards(transform.rotation, q, 250.0f * Time.deltaTime); 
+				
+				m_RigidBody.velocity = transform.right * Time.deltaTime * m_Speed;
+
 			}
 		}
 	}
@@ -56,25 +65,25 @@ public class Fireball : MonoBehaviour {
 		{
 			case 3: 
 			{
-				transform.localEulerAngles = new Vector3(0,0,0);
+				transform.localEulerAngles = new Vector3(0,0,270);
 				m_RigidBody.velocity = new Vector2(0,-m_Speed*Time.deltaTime);
 				break;
 			}
 			case 2: 
 			{
-				transform.localEulerAngles = new Vector3(0,0,180);
+				transform.localEulerAngles = new Vector3(0,0,90);
 				m_RigidBody.velocity = new Vector2(0,m_Speed*Time.deltaTime);
 				break;
 			}
 			case 1: 
 			{
-				transform.localEulerAngles = new Vector3(0,0,270);
+				transform.localEulerAngles = new Vector3(0,0,180);
 				m_RigidBody.velocity = new Vector2(-m_Speed*Time.deltaTime,0);
 				break;
 			}
 			case 0: 
 			{
-				transform.localEulerAngles = new Vector3(0,0,90);
+				transform.localEulerAngles = new Vector3(0,0,0);
 				m_RigidBody.velocity = new Vector2(m_Speed*Time.deltaTime,0);
 				break;
 			}
