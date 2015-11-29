@@ -69,6 +69,7 @@ public class PlayerManager : MonoBehaviour {
 		m_FireBallManager.DeactivateFireballs();
 		m_CurrentLevel.text = "Level " + m_Level.ToString();
 		GameplayUIManager.Instance.m_HealthBar.value = m_Health/m_MaxHealth*100;
+		GameplayUIManager.Instance.m_ExpText.text = "Exp Earnt: " + 0;
 	}
 
 	// Update is called once per frame

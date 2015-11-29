@@ -71,21 +71,28 @@ public class LevelBuilder : MonoBehaviour
 		m_LoadingPanel.SetActive(true);
 		yield return null;
 		LevelToLoad++;
+		bool bFinishedGame = false;
 		if(LevelToLoad > 5)
 		{
 			WorldToLoad++;
 			m_MusicManager.ChangeSong();
 			LevelToLoad = 1;
-			if(WorldToLoad > 5)
+			if(WorldToLoad >= 5)
 			{
 				//WE BEAT THE GAME!!!
-				Application.LoadLevel("EndScreen");
+				bFinishedGame = true;
+				Time.timeScale = 1.0f;
+				Application.LoadLevel("EndScene");
 				yield return null;
 			}
 		}
-		m_Player.ReloadStats();
+
+		if(!bFinishedGame)
+		{
+			m_Player.ReloadStats();
 		
-		CreateLevel(WorldToLoad, LevelToLoad);
+			CreateLevel(WorldToLoad, LevelToLoad);
+		}
 	}
 
 	public void FinishLevel()

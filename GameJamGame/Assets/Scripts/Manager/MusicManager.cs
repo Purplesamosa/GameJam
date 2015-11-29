@@ -17,6 +17,8 @@ public class MusicManager : MonoBehaviour {
 	
 	public void ChangeSong()
 	{
+		if(m_LevelBuilder.World == 5)
+			return;
 		GetComponent<AudioSource>().clip = m_AudioClip[m_LevelBuilder.World-1];
 		GetComponent<AudioSource>().Play();
 	}
