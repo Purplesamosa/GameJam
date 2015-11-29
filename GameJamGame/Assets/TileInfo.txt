@@ -1,0 +1,15 @@
+World 1:
+406 trees
+168 tiles
+
+World 2:
+585 trees
+419 tiles
+
+World 3:
+595 trees
+364 tiles
+
+World 4:
+606 trees
+416 tiles

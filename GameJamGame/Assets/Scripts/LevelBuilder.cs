@@ -28,8 +28,11 @@ public class LevelBuilder : MonoBehaviour
 
 	private float Separation = 1.65f;
 
-	public Sprite [] WorldBG;
-	public SpriteRenderer MyBGImage;
+	//public Sprite [] WorldBG;
+	//public SpriteRenderer MyBGImage;
+
+	public Transform Trees;
+	public Transform Tiles;
 
 	void OnEnable()
 	{
@@ -72,10 +75,12 @@ public class LevelBuilder : MonoBehaviour
 		yield return null;
 		LevelToLoad++;
 		bool bFinishedGame = false;
+		bool bChangeWorld = false;
 		if(LevelToLoad > 5)
 		{
 			WorldToLoad++;
-			m_MusicManager.ChangeSong();
+			bChangeWorld = true;
+			//m_MusicManager.ChangeSong();
 			LevelToLoad = 1;
 			if(WorldToLoad >= 5)
 			{
@@ -90,8 +95,11 @@ public class LevelBuilder : MonoBehaviour
 		if(!bFinishedGame)
 		{
 			m_Player.ReloadStats();
-		
-			CreateLevel(WorldToLoad, LevelToLoad);
+			if(!bChangeWorld)
+				CreateLevel(WorldToLoad, LevelToLoad);
+			else
+				Application.LoadLevel("World" + WorldToLoad);
+				
 		}
 	}
 
@@ -124,7 +132,17 @@ public class LevelBuilder : MonoBehaviour
 	{
 		GetComponent<EnemyBulletManager>().DeactivateAllBullets();
 
-		MyBGImage.sprite = WorldBG[_world - 1];
+		foreach(Transform tr in Trees)
+		{
+			tr.gameObject.SetActive(false);
+		}
+
+		foreach(Transform tr in Tiles)
+		{
+			tr.gameObject.SetActive(false);
+		}
+
+		//MyBGImage.sprite = WorldBG[_world - 1];
 
 		Time.timeScale = 1.0f;
 		World = WorldToLoad;
@@ -159,6 +177,8 @@ public class LevelBuilder : MonoBehaviour
 		int CurColumn = 0;
 		int MaxColumn = 0;
 		Vector2 playerpos = new Vector2();
+		int CurObstacle = 0;
+		int CurTile = 0;
 		for(int i = 0; i < lines.Length; i++)
 		{
 			CurColumn = 0;
@@ -168,16 +188,22 @@ public class LevelBuilder : MonoBehaviour
 				{
 				case '0':
 					{
-						GameObject tile = Instantiate(Resources.Load("Prefabs/" + Season + "/Obstacles/Obstacle")) as GameObject;
-						tile.transform.position = new Vector3(CurColumn * Separation, -i * Separation);
-						tile.transform.parent = LevelContainer;
+						GameObject tree = Trees.GetChild(CurObstacle).gameObject;
+						//GameObject tile = Instantiate(Resources.Load("Prefabs/" + Season + "/Obstacles/Obstacle")) as GameObject;
+						tree.transform.position = new Vector3(CurColumn * Separation, -i * Separation);
+						//tree.transform.parent = LevelContainer;
+						tree.SetActive(true);
+						CurObstacle++;
 					}
 					break;
 				case '1':
 					{
-						GameObject tile = Instantiate(Resources.Load("Prefabs/" + Season + "/Tiles/Tile" + (Random.Range(0,11)).ToString())) as GameObject;
+						GameObject tile = Tiles.GetChild(CurTile).gameObject;
+						//GameObject tile = Instantiate(Resources.Load("Prefabs/" + Season + "/Tiles/Tile" + (Random.Range(0,11)).ToString())) as GameObject;
 						tile.transform.position = new Vector3(CurColumn * Separation, -i * Separation);
-						tile.transform.parent = LevelContainer;
+						//tile.transform.parent = LevelContainer;
+						tile.SetActive(true);
+						CurTile++;
 					}
 					break;
 				case '2':
