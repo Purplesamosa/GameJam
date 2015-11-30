@@ -98,7 +98,7 @@ public class LevelBuilder : MonoBehaviour
 			if(!bChangeWorld)
 				CreateLevel(WorldToLoad, LevelToLoad);
 			else
-				Application.LoadLevel("World" + WorldToLoad);
+				Application.LoadLevel("PreWorld" + WorldToLoad);
 				
 		}
 	}
@@ -221,6 +221,7 @@ public class LevelBuilder : MonoBehaviour
 						teleporter.transform.parent = LevelContainer;
 						MyTeleporter = teleporter.GetComponent<Teleporter>();
 						MyTeleporter.MyLevelBuilder = this;
+						MyTeleporter.SetGem(_world);
 						TargetObj = teleporter.transform;
 					goto case '1';
 					}

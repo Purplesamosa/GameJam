@@ -120,6 +120,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MyLevelBuilder: {fileID: 0}
+  MyGem: {fileID: 21270054}
+  DifferentGems:
+  - {fileID: 21300004, guid: ffc257dd919c2384ba5414ff50c10567, type: 3}
+  - {fileID: 21300008, guid: ffc257dd919c2384ba5414ff50c10567, type: 3}
+  - {fileID: 21300006, guid: ffc257dd919c2384ba5414ff50c10567, type: 3}
+  - {fileID: 21300010, guid: ffc257dd919c2384ba5414ff50c10567, type: 3}
 --- !u!212 &21250132
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -8,6 +8,11 @@ public class CreditsMover : MonoBehaviour
 	public float Speed;
 	public bool bStop = false;
 
+	void OnEnable()
+	{
+		Time.timeScale = 1.0f;
+	}
+
 	// Update is called once per frame
 	void Update ()
 	{
