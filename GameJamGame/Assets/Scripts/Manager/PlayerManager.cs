@@ -7,7 +7,7 @@ public class PlayerManager : MonoBehaviour {
 	public FireBallManager m_FireBallManager;
 	private bool m_CooledDownSpell = true;
 	public float m_CoolDownTimer = 0.25f;
-	public float m_CircleCastRadius = 5.0f;
+	private float m_CircleCastRadius = 2.0f;
 
 	//changing velocites
 	public float m_Speed;
