@@ -18,6 +18,8 @@ public class PlayerManager : MonoBehaviour {
 	//reference to animator
 	private Animator m_Animator;
 
+	private AudioSource m_AudioSource;
+
 	//reference to renderer
 	private SpriteRenderer m_SpriteRender;
 
@@ -48,6 +50,7 @@ public class PlayerManager : MonoBehaviour {
 		m_Animator = GetComponent<Animator>();
 		m_RigidBody = GetComponent<Rigidbody2D>();
 		m_SpriteRender = GetComponent<SpriteRenderer>();
+		m_AudioSource = GetComponent<AudioSource>();
 		m_Level = PlayerPrefs.GetInt("Level",1);
 		m_Health = m_MaxHealth = 10 * (3*m_Level);
 		m_Damage = 1 + (m_Level);
@@ -173,6 +176,7 @@ public class PlayerManager : MonoBehaviour {
 				{
 					m_FireBallManager.ShootFireball(_IdleState,m_Damage);
 				}
+				m_AudioSource.Play();
 				StartCoroutine(CoolDownAttack());
 			}
 			#endregion

@@ -21109,22 +21109,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 22467996, guid: 467e0b7a38917904f8c5dba78382b1a5, type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 22467996, guid: 467e0b7a38917904f8c5dba78382b1a5, type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 22488092, guid: 467e0b7a38917904f8c5dba78382b1a5, type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 22488092, guid: 467e0b7a38917904f8c5dba78382b1a5, type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 11448874, guid: 467e0b7a38917904f8c5dba78382b1a5, type: 2}
       propertyPath: Trees
       value: 
@@ -21133,6 +21117,22 @@ Prefab:
       propertyPath: Tiles
       value: 
       objectReference: {fileID: 1879860172}
+    - target: {fileID: 22467996, guid: 467e0b7a38917904f8c5dba78382b1a5, type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22467996, guid: 467e0b7a38917904f8c5dba78382b1a5, type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22488092, guid: 467e0b7a38917904f8c5dba78382b1a5, type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22488092, guid: 467e0b7a38917904f8c5dba78382b1a5, type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 467e0b7a38917904f8c5dba78382b1a5, type: 2}
   m_IsPrefabParent: 0

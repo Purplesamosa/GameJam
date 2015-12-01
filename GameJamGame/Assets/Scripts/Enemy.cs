@@ -32,15 +32,9 @@ public class Enemy : MonoBehaviour
 	private static EnemyBulletManager BulletManager;
 	private float AttackTimer = 0.0f;
 
-	void OnCollisionEnter2D(Collision2D col)
-	{
-		if(col.transform == PlayerTransform)
-		{
-			col.gameObject.GetComponent<PlayerManager>().TakeDamage(Damage);
-		}
-	}
+	private bool m_MeleeAttack = false;
 
-	void OnCollisionStay(Collision col)
+	void OnCollisionEnter2D(Collision2D col)
 	{
 		if(col.transform == PlayerTransform)
 		{
@@ -112,14 +106,24 @@ public class Enemy : MonoBehaviour
 				m_RigidBody.velocity = new Vector2(direction.x * Speed * Time.deltaTime, direction.y * Speed * Time.deltaTime);
 				m_Animator.SetFloat("XVelocity",m_RigidBody.velocity.x);
 				m_Animator.SetFloat("YVelocity",m_RigidBody.velocity.y);
+				m_MeleeAttack = false;
 			}
 			else
 			{
 				m_RigidBody.velocity = Vector2.zero;
+				m_MeleeAttack = true;
 			}
 
 			switch(MyType)
 			{
+			case EnemyType.Melee:
+				AttackTimer += Time.deltaTime;
+				if(AttackTimer >= AttackDelay && m_MeleeAttack)
+				{
+					AttackTimer = 0.0f;
+					GameplayUIManager.Instance.m_Player.TakeDamage(Damage);
+				}
+				break;
 			case EnemyType.Ranged:
 				AttackTimer += Time.deltaTime;
 				if(AttackTimer >= AttackDelay)
