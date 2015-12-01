@@ -95,7 +95,7 @@ public class Fireball : MonoBehaviour {
 	{
 		yield return new WaitForSeconds(0.2f);
 		m_IgnoreTarget = false;
-		yield return new WaitForSeconds(5.3f);
+		yield return new WaitForSeconds(1.7f);
 		gameObject.SetActive(false);
 	}
 
