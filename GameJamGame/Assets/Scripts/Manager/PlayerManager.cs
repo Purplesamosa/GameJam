@@ -42,6 +42,9 @@ public class PlayerManager : MonoBehaviour {
 
 	public GameObject m_LevelUpText;
 
+	public AudioClip m_FireBall;
+	public AudioClip m_Hurt;
+
 	private bool m_IsInvincible;
 	// Use this for initialization
 	void Start () 
@@ -176,7 +179,7 @@ public class PlayerManager : MonoBehaviour {
 				{
 					m_FireBallManager.ShootFireball(_IdleState,m_Damage);
 				}
-				m_AudioSource.Play();
+				m_AudioSource.PlayOneShot(m_FireBall);
 				StartCoroutine(CoolDownAttack());
 			}
 			#endregion
@@ -197,6 +200,7 @@ public class PlayerManager : MonoBehaviour {
 			StartCoroutine(UnInvincible());
 			m_Health -= Damage;
 			GameplayUIManager.Instance.m_HealthBar.value = m_Health/m_MaxHealth*100;
+			m_AudioSource.PlayOneShot(m_Hurt);
 			HealthCheck();
 		}
 	}
@@ -341,6 +345,11 @@ public class PlayerManager : MonoBehaviour {
 	public float GetDamage()
 	{
 		return m_Damage;
+	}
+
+	public int GetLevel()
+	{
+		return m_Level;
 	}
 
 	/*

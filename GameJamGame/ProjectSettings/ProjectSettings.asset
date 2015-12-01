@@ -95,9 +95,6 @@ PlayerSettings:
   APKExpansionFiles: 0
   preloadShaders: 0
   StripUnusedMeshComponents: 0
-  VertexChannelCompressionMask:
-    serializedVersion: 2
-    m_Bits: 238
   iPhoneSdkVersion: 988
   iPhoneTargetOSVersion: 22
   uIPrerenderedIcon: 0
@@ -126,7 +123,7 @@ PlayerSettings:
   iOSLaunchScreenCustomXibPath: 
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
-  AndroidKeystoreName: C:/Users/1/Desktop/Canadia/GameJam/GameJam/GameJamGame/Purple.keystore
+  AndroidKeystoreName: C:/Users/Julian/GameJam/GameJam/GameJamGame/Purple.keystore
   AndroidKeyaliasName: purple
   AndroidTVCompatibility: 1
   AndroidIsGame: 1

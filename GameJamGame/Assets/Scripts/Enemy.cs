@@ -34,6 +34,11 @@ public class Enemy : MonoBehaviour
 
 	private bool m_MeleeAttack = false;
 
+	public AudioClip m_Hurt;
+	public AudioClip m_Dead;
+
+	private AudioSource m_AudioSource;
+
 	void OnCollisionEnter2D(Collision2D col)
 	{
 		if(col.transform == PlayerTransform)
@@ -48,6 +53,7 @@ public class Enemy : MonoBehaviour
 		//Health =  2.0f * World * (int)MyType;
 		m_Animator = GetComponent<Animator>();
 		m_RigidBody = GetComponent<Rigidbody2D>();
+		m_AudioSource = GetComponent<AudioSource>();
 	}
 
 	public void TakeDamage(float _dmg)
@@ -57,12 +63,16 @@ public class Enemy : MonoBehaviour
 		if(Health <= 0.0f)
 		{
 			m_RigidBody.velocity = Vector2.zero;
-
+			m_AudioSource.PlayOneShot(m_Dead);
 			GetComponent<EnemyFadeOut>().enabled = true;
 			GetComponent<Collider2D>().enabled = false;
 			m_Animator.enabled = false;
 			enabled = false;
 			PlayerTransform.GetComponent<PlayerManager>().GiveXP(XPToGive);
+		}
+		else
+		{
+			m_AudioSource.PlayOneShot(m_Hurt);
 		}
 	}
 

@@ -36,6 +36,7 @@ public class GameplayUIManager : MonoBehaviour {
 	public Text m_ExpToLevelText;
 	public Text m_HealthText;
 	public Text m_DamageText;
+	public Text m_LevelText;
 	// Use this for initialization
 	void Awake ()
 	{
@@ -97,6 +98,7 @@ public class GameplayUIManager : MonoBehaviour {
 	public void SetUpThePause()
 	{
 		m_PausePanel.SetActive(true);
+		m_LevelText.text = "Level: " + m_Player.GetLevel();
 		m_CurrentText.text = "EXP: " + m_Player.GetEXP();
 		m_ExpToLevelText.text = "Till level: " + m_Player.GetLevelXP();
 		m_HealthText.text = m_Player.GetHP();

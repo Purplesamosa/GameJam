@@ -31,6 +31,6 @@ public class AdManager : MonoBehaviour {
 	
 	public void ShowAd()
 	{
-		Advertisement.Show();
+		Advertisement.Show("rewardedVideo");
 	}
 }

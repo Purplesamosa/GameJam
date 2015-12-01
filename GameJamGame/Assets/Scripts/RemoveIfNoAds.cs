@@ -6,7 +6,7 @@ public class RemoveIfNoAds : MonoBehaviour {
 
 	void OnEnable()
 	{
-		if(!Advertisement.IsReady())
+		if(!Advertisement.IsReady("rewardedVideo"))
 		{
 			gameObject.SetActive(false);
 		}
