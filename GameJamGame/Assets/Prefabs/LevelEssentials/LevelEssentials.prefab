@@ -4030,7 +4030,7 @@ MonoBehaviour:
   m_ExpToLevelText: {fileID: 11429858}
   m_HealthText: {fileID: 11422054}
   m_DamageText: {fileID: 11428536}
-  m_LevelText: {fileID: 0}
+  m_LevelText: {fileID: 11443104}
 --- !u!114 &11445180
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4084,7 +4084,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_FireBallManager: {fileID: 11489278}
   m_CoolDownTimer: .75
-  m_CircleCastRadius: 5
   m_Speed: 50
   m_CurrentLevel: {fileID: 11446052}
   m_LevelUpText: {fileID: 138778}
