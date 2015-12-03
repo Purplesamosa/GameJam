@@ -16,6 +16,9 @@ public class NovaProjectile : MonoBehaviour
 
 	void OnEnable()
 	{
+
+		Damage = GameplayUIManager.Instance.m_Player.GetDamage() + 2.0f;
+
 		DeactivationTimer = 0.0f;
 		GetComponent<Rigidbody2D>().velocity = new Vector2(Direction.x * Speed * Time.deltaTime, Direction.y * Speed * Time.deltaTime);
 		float angle = Mathf.Atan2(Direction.y, Direction.x) * Mathf.Rad2Deg;

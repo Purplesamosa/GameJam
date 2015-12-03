@@ -3623,7 +3623,7 @@ MonoBehaviour:
   FireballSprite: {fileID: 21300000, guid: f3ed03be4cd8fcb47955d53de225b346, type: 3}
   HeartSprite: {fileID: 21300000, guid: 47e05f8c127d63341b93e5f597eab0c0, type: 3}
   PoolSize: 30
-  BulletSpeed: 150
+  BulletSpeed: 110
 --- !u!114 &11432436
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4084,7 +4084,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_FireBallManager: {fileID: 11489278}
   m_CoolDownTimer: .75
-  m_Speed: 50
+  m_Speed: 60
   m_CurrentLevel: {fileID: 11446052}
   m_LevelUpText: {fileID: 138778}
   m_FireBall: {fileID: 8300000, guid: 61dea2d5ef1fe884fb54fc1ea8fed441, type: 3}

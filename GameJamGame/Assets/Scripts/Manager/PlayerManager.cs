@@ -220,6 +220,7 @@ public class PlayerManager : MonoBehaviour {
 	{
 		if(m_Health <= 0)
 		{
+			m_RigidBody.velocity = Vector2.zero;
 			m_Animator.Play("PlayerDie");
 			m_IsDead = true;
 			m_IsInvincible = true;
@@ -285,6 +286,8 @@ public class PlayerManager : MonoBehaviour {
 		{
 			_Text = 0;
 		}
+
+		m_Exp += _total;
 		GameplayUIManager.Instance.m_ExpBar.value = (float)m_Exp/(float)m_ExpToLevel;
 		while(_total > 0)
 		{
@@ -303,6 +306,8 @@ public class PlayerManager : MonoBehaviour {
 			GameplayUIManager.Instance.m_ExpBar.value = (float)(_Text+m_Exp)/(float)m_ExpToLevel;
 			yield return 0;
 		}
+		PlayerPrefs.SetInt("EXP",m_Exp);
+		
 		if(m_ExpToLevel < (m_Exp+_Text))
 		{
 			++m_Level;
@@ -334,7 +339,7 @@ public class PlayerManager : MonoBehaviour {
 
 	public int GetLevelXP()
 	{
-		return m_ExpToLevel;
+		return m_ExpToLevel - m_Exp;
 	}
 
 	public string GetHP()
