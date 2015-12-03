@@ -163,7 +163,7 @@ MonoBehaviour:
   World: 1
   ViewRange: 2.5
   StopDistance: 1.5
-  Speed: 70
+  Speed: 60
   AttackDelay: 1.5
   Damage: 5
   XPToGive: 25

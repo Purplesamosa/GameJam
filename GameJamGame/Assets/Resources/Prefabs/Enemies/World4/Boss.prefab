@@ -175,8 +175,8 @@ MonoBehaviour:
   World: 4
   ViewRange: 2.5
   StopDistance: 1.5
-  Speed: 100
-  AttackDelay: .5
+  Speed: 65
+  AttackDelay: 1
   Damage: 20
   XPToGive: 1
   MyLevelBuilder: {fileID: 0}

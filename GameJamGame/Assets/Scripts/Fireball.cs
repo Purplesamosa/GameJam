@@ -48,7 +48,7 @@ public class Fireball : MonoBehaviour {
 				float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 				//angle += 90.0f;
 				Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
-				transform.rotation = Quaternion.RotateTowards(transform.rotation, q, 250.0f * Time.deltaTime); 
+				transform.rotation = Quaternion.RotateTowards(transform.rotation, q, 300.0f * Time.deltaTime); 
 				
 				m_RigidBody.velocity = transform.right * Time.deltaTime * m_Speed;
 

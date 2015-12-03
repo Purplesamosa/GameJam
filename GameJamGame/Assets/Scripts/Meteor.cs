@@ -52,7 +52,7 @@ public class Meteor : MonoBehaviour
 		{
 			if(en.MyType == Enemy.EnemyType.Boss)
 			{
-				en.TakeDamage(5.0f);
+				en.TakeDamage(GameplayUIManager.Instance.m_Player.GetDamage() * 3.0f);
 			}
 			else
 			{

@@ -19,6 +19,8 @@ public class BarrageProjectile : MonoBehaviour
 	
 	void OnEnable()
 	{
+		Damage = GameplayUIManager.Instance.m_Player.GetDamage() * 1.5f;
+
 		bAttack = false;
 		DeactivationTimer = 0.0f;
 		AttackTimer = 0.0f;
